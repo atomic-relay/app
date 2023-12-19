@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "sst bind next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -12,11 +12,15 @@
     "@heroicons/react": "1.0.6",
     "@radix-ui/themes": "^2.0.2",
     "@tremor/react": "^3.12.1",
+    "@types/sjcl": "^1.0.34",
     "coinbase": "^2.0.8",
     "connectkit": "^1.5.3",
+    "crypto": "^1.0.1",
     "next": "14.0.4",
-    "react": "^18",
+    "react": "^18.2.0",
     "react-dom": "^18",
+    "sjcl": "^1.0.8",
+    "swr": "^2.2.4",
     "viem": "^1.20.1",
     "wagmi": "^1.4.12"
   },
@@ -29,6 +33,9 @@
     "eslint-config-next": "14.0.4",
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
-    "typescript": "^5"
+    "typescript": "^5",
+    "sst": "^2.38.7",
+    "aws-cdk-lib": "2.110.1",
+    "constructs": "10.3.0"
   }
 }
