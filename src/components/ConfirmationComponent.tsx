@@ -4,16 +4,14 @@ import { Button, Card, Flex, Icon, Metric, NumberInput, Text } from "@tremor/rea
 import {ArrowCircleDownIcon, CurrencyDollarIcon } from "@heroicons/react/outline";
 import {ReactElement, useState, useEffect} from "react";
 import { Money } from 'ts-money'
-import { useSearchParams } from 'next/navigation'
 
 interface ConfirmationProps {
 	searchParams: any;
 }
 
 export function ConfirmationComponent(props: ConfirmationProps): ReactElement {
-	const searchParams = useSearchParams();
-	const usd = parseInt(searchParams?.get('usd') || '0');
-	const eur = parseInt(searchParams?.get('eur') || '0');
+	const usd = parseInt(props?.searchParams['usd'] || '0');
+	const eur = parseInt(props?.searchParams['eur'] || '0');
 
 	const [dollar, setDollars] = useState(usd);
 	const [euro, setEuros] = useState(eur);
