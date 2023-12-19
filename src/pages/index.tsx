@@ -1,11 +1,10 @@
-"use server";
-
+import "@/styles/globals.css";
 import crypto from 'crypto';
 import useSWR from 'swr';
 
-import { ClientComponent } from './components/ClientComponent';
+import { ClientComponent } from '@/components/ClientComponent';
 
-const getItem = async () => {
+export async function getServerSideProps() {
   const nonce = Date.now();
   const request = {
     book: 'btc_mxn', // btc_usd btc_usdt
@@ -16,13 +15,12 @@ const getItem = async () => {
   const res = await fetch("https://api.bitso.com/api/v3/orders?" + query, {
     headers: {
       "X-Signature": signature
-
     }
   })
-  return res.json()
-};
+  return { props: res.json() }
+}
 
-export default async function Home() {
-  // const { data, error, isLoading } = useSWR('/api/v3/orders', getItem)
-  return <ClientComponent data={{}} />
+export default function Home() {
+  const { data, error, isLoading } = useSWR('/api/v3/orders');
+  return <ClientComponent data={data} />
 }
