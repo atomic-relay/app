@@ -1,7 +1,6 @@
 import "@/styles/globals.css";
 import crypto from 'crypto';
 import useSWR from 'swr';
-
 import { ClientComponent } from '@/components/ClientComponent';
 
 export async function getServerSideProps() {

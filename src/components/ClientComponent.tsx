@@ -1,7 +1,10 @@
-import {AreaChart, Button, Card, Flex, Icon, Metric, NumberInput, ProgressBar, Text, Title} from "@tremor/react";
-import {ArrowCircleDownIcon, CurrencyDollarIcon, CurrencyEuroIcon} from "@heroicons/react/outline";
+"use client"
+
+import {AreaChart, Button, Card, Flex, Icon, Metric, NumberInput, Text, Title} from "@tremor/react";
+import {ArrowCircleDownIcon, CurrencyDollarIcon } from "@heroicons/react/outline";
 import {ReactElement, useState, useEffect} from "react";
-import { Money, Currencies } from 'ts-money'
+import { Money } from 'ts-money'
+import { useRouter } from 'next/router'
 
 const chartdata = [
 	{
@@ -46,15 +49,18 @@ interface ClientProps {
 export function ClientComponent(props: ClientProps): ReactElement {
 	const data = props.data;
 	console.log(data, 'DATA');
+	const router = useRouter();
 	const [dollar, setDollars] = useState(0);
 	const [euro, setEuros] = useState(0);
 	const exchangeRate = 1.1;
 	useEffect(() => {
 		if (dollar) {
 			const dollarMoney = new Money(dollar * 100, 'USD')
-			setEuros(Math.round(dollarMoney.amount * exchangeRate / 100, 2));
+			setEuros(Math.round(dollarMoney.amount * exchangeRate / 100));
 		}
 	}, [dollar]);
+
+	const query = `usd=${dollar}&eur=${euro}`;
 
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-self-start p-24">
@@ -71,7 +77,7 @@ export function ClientComponent(props: ClientProps): ReactElement {
 					<Text>$EUR Exchange Rate</Text>
 					<Metric className="text-base">${euro}</Metric>
 				</Flex>
-				<Button className="my-2" onClick={() => setDollars(0)}>Submit</Button>
+				<Button className="my-2" onClick={() => router.push('/confirmation?' + query)}>Submit</Button>
 				<Flex className="mt-4">
 					<Text>1% fee</Text>
 					<Text>Delivery 1 hr</Text>
