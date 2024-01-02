@@ -1,6 +1,5 @@
+require('dotenv').config();
 const axios = require("axios");
-
-const ALCHEMY_API_KEY = process.env.ALCHEMY_API_KEY || '';
 
 async function  getProgramAccountsExample() {
 	let gPAExampleRequest = {
@@ -18,7 +17,7 @@ async function  getProgramAccountsExample() {
 	}
 	// @ts-ignore
 	let programAccounts = []
-	const alchemyRPCUrl = `https://solana-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}`
+	const alchemyRPCUrl = `https://solana-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`
 	try {
 		let response = await axios.post(alchemyRPCUrl, gPAExampleRequest);
 		let responseData = response.data["result"]

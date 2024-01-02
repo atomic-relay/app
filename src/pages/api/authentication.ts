@@ -1,5 +1,5 @@
+require('dotenv').config();
 import { AccountTokenAuthProvider, LightsparkClient, InvoiceType, CurrencyUnit } from "@lightsparkdev/lightspark-sdk";
-
 const API_TOKEN_CLIENT_ID = process.env.LIGHTSPARK_API_KEY || '';
 const API_TOKEN_CLIENT_SECRET = process.env.LIGHTSPARK_SECRET || '';
 
