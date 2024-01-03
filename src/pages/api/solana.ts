@@ -1,47 +1,14 @@
-require('dotenv').config();
+const solanaWeb3 = require("@solana/web3.js");
 const axios = require("axios");
 
-async function  getProgramAccountsExample() {
-	let gPAExampleRequest = {
-		"method": "alchemy_getProgramAccounts",
-		"params": [
-			"ZETAxsqBRek56DhiGXrn75yj2NHU3aYUnxvHXpkf3aD",
-			{
-				"encoding": "base64",
-				"withContext": true,
-				"order": "desc"
-			}
-		],
-		"id": 0,
-		"jsonrpc": "2.0"
-	}
-	// @ts-ignore
-	let programAccounts = []
-	const alchemyRPCUrl = `https://solana-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`
-	try {
-		let response = await axios.post(alchemyRPCUrl, gPAExampleRequest);
-		let responseData = response.data["result"]
+const rpc = "https://solana-mainnet.g.alchemy.com/v2/DZG0-YVM1DypFQSBtmfw4ejBWE8p3bPf"; // RPC URL for connecting with a Solana node
 
-		// continue aggregating if there's a new pageKey present in the latest response
-		while (responseData["pageKey"]) {
-			// @ts-ignore
-			programAccounts = programAccounts.concat(responseData["value"]);
+const main = async () => {
+	const connection = new solanaWeb3.Connection(rpc, "confirmed"); // confirming the connection
 
-			// place the pagekey within the optional config object
-			// (you may need to create that config object if you didn't have it originally)
-			// @ts-ignore
-			gPAExampleRequest["params"][1]["pageKey"] = responseData["pageKey"];
+	let slot = await connection.getSlot(); // getting the most recent slot number
+	console.log("The latest slot number is", slot); // logging the most recent slot number
+};
 
-			// make another call to getProgramAccounts with the pageKey
-			response = await axios.post(alchemyRPCUrl, gPAExampleRequest);
-			responseData = response.data["result"]
-		}
+main();
 
-		programAccounts = programAccounts.concat(responseData["value"]);
-		return programAccounts;
-	} catch (err) {
-		// @ts-ignore
-		console.error(`Error in Response, Data is: ${err.data}`);
-		return [];
-	}
-}
