@@ -3,7 +3,7 @@ import { AccountTokenAuthProvider, LightsparkClient, InvoiceType, CurrencyUnit }
 const API_TOKEN_CLIENT_ID = process.env.LIGHTSPARK_API_KEY || '';
 const API_TOKEN_CLIENT_SECRET = process.env.LIGHTSPARK_SECRET || '';
 
-export default async function handler(req, res) {
+export default async function handler() {
 	const lightSparkClient = new LightsparkClient(
 		new AccountTokenAuthProvider(API_TOKEN_CLIENT_ID, API_TOKEN_CLIENT_SECRET)
 	);
@@ -13,4 +13,15 @@ export default async function handler(req, res) {
 	const invoiceDetails = await lightSparkClient.decodeInvoice(encodedInvoice || '');
 	console.log(invoiceDetails);
 
+}
+
+export const config = {
+	api: {
+		bodyParser: {
+			sizeLimit: '1mb',
+			// bodyParser: false,
+		},
+	},
+	// Specifies the maximum allowed duration for this function to execute (in seconds)
+	maxDuration: 5,
 }

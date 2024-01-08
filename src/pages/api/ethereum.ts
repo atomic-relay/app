@@ -1,11 +1,11 @@
-const { Alchemy, Network, Wallet, Utils } = require("alchemy-sdk");
+import { Alchemy, Network, Wallet, Utils } from "alchemy-sdk";
 
 const settings = {
 	apiKey: 'Gou-7qtS5tPJuLE90NkfVa7-T2sjWVhF', // Replace with your Alchemy API Key.
 	network: Network.ETH_SEPOLIA, // Replace with your network.
 };
 
-const pk = process.env.ALCHEMY_PRIVATE_KEY
+const pk = process.env.ALCHEMY_PRIVATE_KEY || ''
 const alchemy = new Alchemy(settings);
 
 // Optional Config object, but defaults to demo api-key and eth-mainnet.
