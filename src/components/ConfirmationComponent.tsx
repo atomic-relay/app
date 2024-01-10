@@ -1,8 +1,8 @@
 'use client'
 
 import { Button, Card, Flex, Icon, Metric, NumberInput, Text } from "@tremor/react";
-import {ArrowCircleDownIcon, CurrencyDollarIcon } from "@heroicons/react/outline";
-import {ReactElement, useState, useEffect} from "react";
+import { ArrowCircleDownIcon, CurrencyDollarIcon } from "@heroicons/react/outline";
+import { ReactElement, useState, useEffect } from "react";
 import { Money } from 'ts-money'
 
 interface ConfirmationProps {

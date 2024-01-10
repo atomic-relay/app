@@ -26,6 +26,7 @@
     "next": "14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18",
+    "react-phone-number-input": "^3.3.9",
     "sjcl": "^1.0.8",
     "swr": "^2.2.4",
     "ts-money": "^0.4.8",
