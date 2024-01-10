@@ -1,4 +1,4 @@
-const { Alchemy, Network, Wallet } = require("alchemy-sdk");
+import { Alchemy, Network, Wallet } from "alchemy-sdk";
 export const settings = {
 	apiKey: 'Gou-7qtS5tPJuLE90NkfVa7-T2sjWVhF', // Replace with your Alchemy API Key.
 	network: Network.ETH_SEPOLIA, // Replace with your network.

@@ -1,4 +1,4 @@
-const { Alchemy, Network, Wallet, Utils } = require("alchemy-sdk");
+import { Alchemy, Network, Wallet, Utils } from "alchemy-sdk";
 async function send() {
 	const settings = {
 		apiKey: 'Gou-7qtS5tPJuLE90NkfVa7-T2sjWVhF', // Replace with your Alchemy API Key.

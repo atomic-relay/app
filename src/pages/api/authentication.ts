@@ -8,20 +8,17 @@ export default async function handler() {
 		new AccountTokenAuthProvider(API_TOKEN_CLIENT_ID, API_TOKEN_CLIENT_SECRET)
 	);
 
-	// nodeId: string, amountMsats: number, memo: string, type?: InvoiceType | undefined, expirySecs?: number | undefined
 	const encodedInvoice = await lightSparkClient.createInvoice("123", 100, "Whasssupppp", InvoiceType.AMP)
 	const invoiceDetails = await lightSparkClient.decodeInvoice(encodedInvoice || '');
 	console.log(invoiceDetails);
-
 }
 
-export const config = {
-	api: {
-		bodyParser: {
-			sizeLimit: '1mb',
-			// bodyParser: false,
-		},
-	},
-	// Specifies the maximum allowed duration for this function to execute (in seconds)
-	maxDuration: 5,
-}
+// export const config = {
+// 	api: {
+// 		bodyParser: {
+// 			sizeLimit: '1mb',
+// 		},
+// 	},
+// 	// Specifies the maximum allowed duration for this function to execute (in seconds)
+// 	maxDuration: 5,
+// }
