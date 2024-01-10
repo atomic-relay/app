@@ -1,7 +1,7 @@
 require('dotenv').config();
-import { AccountTokenAuthProvider, LightsparkClient, InvoiceType, CurrencyUnit } from "@lightsparkdev/lightspark-sdk";
-const API_TOKEN_CLIENT_ID = process.env.LIGHTSPARK_API_KEY || '';
-const API_TOKEN_CLIENT_SECRET = process.env.LIGHTSPARK_SECRET || '';
+import { AccountTokenAuthProvider, LightsparkClient, InvoiceType } from "@lightsparkdev/lightspark-sdk";
+const API_TOKEN_CLIENT_ID = process.env.LIGHTSPARK_API_KEY || '018cea3f48b24f890000cd68bef8115e';
+const API_TOKEN_CLIENT_SECRET = process.env.LIGHTSPARK_SECRET || 'KSTHhHugjXnHPwilBY2mYVxf4ecNEL2JSFkqxL4nrIY';
 
 export default async function handler() {
 	const lightSparkClient = new LightsparkClient(
@@ -12,13 +12,3 @@ export default async function handler() {
 	const invoiceDetails = await lightSparkClient.decodeInvoice(encodedInvoice || '');
 	console.log(invoiceDetails);
 }
-
-// export const config = {
-// 	api: {
-// 		bodyParser: {
-// 			sizeLimit: '1mb',
-// 		},
-// 	},
-// 	// Specifies the maximum allowed duration for this function to execute (in seconds)
-// 	maxDuration: 5,
-// }

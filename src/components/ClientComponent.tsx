@@ -7,7 +7,6 @@ import { Money } from 'ts-money'
 import { useRouter } from 'next/router'
 import { TextInput } from "@tremor/react";
 
-
 interface ClientProps {
 	data?: any;
 }
