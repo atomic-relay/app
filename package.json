@@ -1,17 +1,15 @@
 {
   "name": "atomic-relay-app",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev",
-    "dev-sst": "sst bind next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@alch/alchemy-web3": "^1.4.7",
-    "@aws-sdk/client-s3": "^3.478.0",
     "@aws-sdk/s3-request-presigner": "^3.478.0",
     "@heroicons/react": "1.0.6",
     "@lightsparkdev/lightspark-sdk": "^1.5.3",
@@ -23,15 +21,12 @@
     "alchemy-sdk": "^3.1.0",
     "axios": "^1.6.3",
     "coinbase": "^2.0.8",
-    "connectkit": "^1.5.3",
     "crypto": "^1.0.1",
     "dotenv": "^16.3.1",
     "next": "14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18",
     "sjcl": "^1.0.8",
-    "socket.io": "^4.7.3",
-    "socket.io-client": "^4.7.3",
     "swr": "^2.2.4",
     "ts-money": "^0.4.8",
     "wagmi": "^1.4.12",
@@ -42,12 +37,10 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
-    "aws-cdk-lib": "2.110.1",
     "constructs": "10.3.0",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "postcss": "^8",
-    "sst": "^2.38.7",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   }
