@@ -16,6 +16,7 @@ export function ClientComponent(props: ClientProps): ReactElement {
 	const [dollar, setDollars] = useState(0);
 	const [btc, setBTC] = useState(0);
 	const [euro, setEuros] = useState(0);
+	const [stables, setStables] = useState(0);
 	const [mxn, setPesos] = useState(0);
 	const [fee, setFee] = useState(0);
 	const [currency, setCurrency] = useState('usd');
@@ -27,6 +28,7 @@ export function ClientComponent(props: ClientProps): ReactElement {
 		if (dollar) {
 			const dollarMoney = new Money(dollar * 100, 'USD')
 			setEuros(Math.round(dollarMoney.amount * 1.1 / 100));
+			setStables(dollarMoney.amount * 0.999 / 100);
 			setPesos(Math.round(dollarMoney.amount * 16.91 / 100));
 			setBTC(dollarMoney.amount * btcDollarRate / 100);
 			setFee(dollarMoney.amount * fixedFee / 100);
@@ -34,17 +36,23 @@ export function ClientComponent(props: ClientProps): ReactElement {
 	}, [dollar]);
 
 	const query = `usd=${dollar}&eur=${euro}`;
-
 	const usFormat = new Intl.NumberFormat('en-US');
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-self-start p-24">
 			<Card className="max-w-sm my-4 mx-auto">
 				<NumberInput className="my-2" icon={CurrencyDollarIcon} onValueChange={(val => setDollars(val))} placeholder="Send.." enableStepper={false} />
-
 				<Divider />
 				<Flex className="mt-2">
 					<Text className="text-base">$USD</Text>
 					<Metric className="text-base">${usFormat.format(dollar)}</Metric>
+				</Flex>
+				<Flex className="mt-2">
+					<Text className="text-base">USDT</Text>
+					<Metric className="text-base">${usFormat.format(stables)}</Metric>
+				</Flex>
+				<Flex className="mt-2">
+					<Text className="text-base">USDC</Text>
+					<Metric className="text-base">${usFormat.format(stables)}</Metric>
 				</Flex>
 				<Flex className="mt-2">
 					<Text className="text-base">€EUR</Text>
@@ -55,23 +63,29 @@ export function ClientComponent(props: ClientProps): ReactElement {
 					<Metric className="text-base">₱{usFormat.format(mxn)}</Metric>
 				</Flex>
 				<Flex className="mt-2">
-					<Text className="text-base">₿BTC</Text>
+					<Text className="text-base">₿TC</Text>
 					<Metric className="text-base">₿{usFormat.format(btc)}</Metric>
 				</Flex>
 				<Divider />
 				<div className="max-w-sm mx-auto space-y-6">
 					<Select value={currency} onValueChange={setCurrency}>
 						<SelectItem value="usd" icon={CurrencyDollarIcon}>
-							US Dollar
+							Dollars
+						</SelectItem>
+						<SelectItem value="usdc" icon={CurrencyDollarIcon}>
+							USDC
+						</SelectItem>
+						<SelectItem value="usdt" icon={CurrencyDollarIcon}>
+							USDT
 						</SelectItem>
 						<SelectItem value="eur" icon={CurrencyDollarIcon}>
-							Euro Dollar
+							Euros
 						</SelectItem>
 						<SelectItem value="mxn" icon={CurrencyDollarIcon}>
-							Mexican Pesos
+							Pesos
 						</SelectItem>
 						<SelectItem value="btc" icon={CurrencyDollarIcon}>
-							Bitcoin
+							Bitcoins
 						</SelectItem>
 					</Select>
 				</div>
