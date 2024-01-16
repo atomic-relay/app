@@ -6,13 +6,11 @@ import {ReactElement, useState, useEffect} from "react";
 import { Money } from 'ts-money'
 import { useRouter } from 'next/router'
 import { Select, SelectItem } from "@tremor/react";
-import { UserButton } from "@clerk/nextjs";
 
 interface ClientProps {
 	data?: any;
 }
 export function ClientComponent(props: ClientProps): ReactElement {
-	const data = props.data;
 	const router = useRouter();
 	const [dollar, setDollars] = useState(0);
 	const [btc, setBTC] = useState(0);
@@ -40,7 +38,6 @@ export function ClientComponent(props: ClientProps): ReactElement {
 	const usFormat = new Intl.NumberFormat('en-US');
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-self-start p-24">
-			<UserButton afterSignOutUrl="/"/>
 			<Card className="max-w-sm my-4 mx-auto">
 				<NumberInput className="my-2" icon={CurrencyDollarIcon} onValueChange={(val => setDollars(val))} placeholder="Send.." enableStepper={false} />
 				<Divider />
