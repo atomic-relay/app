@@ -97,7 +97,6 @@ export function ClientComponent(props: ClientProps): ReactElement {
 					<Text>Delivery 1 hr</Text>
 				</Flex>
 			</Card>
-
 		</main>
 	)
 }

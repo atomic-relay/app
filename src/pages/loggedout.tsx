@@ -1,6 +1,5 @@
 import "@/styles/globals.css";
 
-
-export default function Confirmation() {
-	return <div></div>
+export default function LoggedOut() {
+	return (<div><p>Logged Out</p></div>)
 }
