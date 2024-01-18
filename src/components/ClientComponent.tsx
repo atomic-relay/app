@@ -19,7 +19,8 @@ export function ClientComponent(props: ClientProps): ReactElement {
 	const [mxn, setPesos] = useState(0);
 	const [fee, setFee] = useState(0);
 	const [currency, setCurrency] = useState('usd');
-	const [phone, setPhone] = useState();
+	const [phone, setPhone] = useState<string>('');
+	const [email, setEmail] = useState<string>('');
 
 	const btcDollarRate = 0.000022;
 	const fixedFee = .01;
@@ -39,18 +40,12 @@ export function ClientComponent(props: ClientProps): ReactElement {
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-self-start p-24">
 			<Card className="max-w-sm my-4 mx-auto">
-				<NumberInput className="my-2" icon={CurrencyDollarIcon} onValueChange={(val => setDollars(val))} placeholder="Send.." enableStepper={false} />
-				<Divider />
 				<Flex className="mt-2">
 					<Text className="text-base">$USD</Text>
 					<Metric className="text-base">${usFormat.format(dollar)}</Metric>
 				</Flex>
 				<Flex className="mt-2">
 					<Text className="text-base">USDT</Text>
-					<Metric className="text-base">${usFormat.format(stables)}</Metric>
-				</Flex>
-				<Flex className="mt-2">
-					<Text className="text-base">USDC</Text>
 					<Metric className="text-base">${usFormat.format(stables)}</Metric>
 				</Flex>
 				<Flex className="mt-2">
@@ -69,29 +64,27 @@ export function ClientComponent(props: ClientProps): ReactElement {
 				<div className="max-w-sm mx-auto space-y-6">
 					<Select value={currency} onValueChange={setCurrency}>
 						<SelectItem value="usd" icon={CurrencyDollarIcon}>
-							Dollars
-						</SelectItem>
-						<SelectItem value="usdc" icon={CurrencyDollarIcon}>
-							USDC
+							USD
 						</SelectItem>
 						<SelectItem value="usdt" icon={CurrencyDollarIcon}>
 							USDT
 						</SelectItem>
 						<SelectItem value="eur" icon={CurrencyDollarIcon}>
-							Euros
+							EUR
 						</SelectItem>
 						<SelectItem value="mxn" icon={CurrencyDollarIcon}>
-							Pesos
+							MXN
 						</SelectItem>
 						<SelectItem value="btc" icon={CurrencyDollarIcon}>
-							Bitcoins
+							BTC
 						</SelectItem>
 					</Select>
 				</div>
-				<TextInput icon={MailIcon} className="my-2" error={false} placeholder="Email..." />
-				<NumberInput icon={PhoneIcon} placeholder="+18001234" enableStepper={false} />
+				<NumberInput className="my-2" icon={CurrencyDollarIcon} onValueChange={(val => setDollars(val))} placeholder="Send.." enableStepper={false} />
+				<TextInput icon={MailIcon} className="my-2" error={false} placeholder="Email..." onChange={(e) => setEmail(e.target.value)}/>
+				<NumberInput icon={PhoneIcon} placeholder="+18001234" enableStepper={false} onChange={(e) => setPhone(e.target.value)} />
 				<Divider />
-				<Button className="max-w-lg my-2" onClick={() => router.push('/confirmation?' + query)}>Submit</Button>
+				<Button className="max-w-lg my-2" onClick={() => router.push('/confirmation?' + query + `&phone=${phone}` + `&email=${email}`)}>Submit</Button>
 				<Flex className="mt-4">
 					<Text>1% fee estimate {fee > 0 && `$`}{fee > 0 && fee}</Text>
 					<Text>Delivery 1 hr</Text>
