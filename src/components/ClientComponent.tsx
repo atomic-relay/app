@@ -60,7 +60,7 @@ export function ClientComponent(props: ClientProps): ReactElement {
 			setStables(dollarMoney.amount * 1 / 100);
 			setPesos(Math.round(dollarMoney.amount * 16.91 / 100));
 			setBTC(dollarMoney.amount * btcDollarRate / 100);
-			setSATS(dollarMoney.amount * btcDollarRate / 100 * 1000000);
+			setSATS(dollarMoney.amount * btcDollarRate / 100 * 1000000000);
 			setFee(dollarMoney.amount * fixedFee / 100);
 		}
 	}, [dollar]);
@@ -85,7 +85,7 @@ export function ClientComponent(props: ClientProps): ReactElement {
 				</Flex>
 				<Flex className="mt-2">
 					<Text className="text-base">SATS</Text>
-					<Metric className="text-base">{sats.toFixed(6)}</Metric>
+					<Metric className="text-base">{sats}</Metric>
 				</Flex>
 				<Divider />
 				<div className="max-w-sm mx-auto space-y-6">
