@@ -1,15 +1,31 @@
 "use client"
 import 'react-phone-number-input/style.css'
-import {Button, Card, Divider, Flex, Metric, NumberInput, Text, TextInput} from "@tremor/react";
+import { Button, Card, Divider, Flex, Metric, NumberInput, Text, TextInput } from "@tremor/react";
 import { CurrencyDollarIcon, PhoneIcon, MailIcon } from "@heroicons/react/outline";
-import {ReactElement, useState, useEffect} from "react";
+import { ReactElement, useState, useEffect } from "react";
 import { Money } from 'ts-money'
 import { useRouter } from 'next/router'
 import { Select, SelectItem } from "@tremor/react";
+import useSWRMutation from 'swr/mutation'
 
 interface ClientProps {
 	data?: any;
 }
+
+// @ts-ignore
+const fetcher = (...args) => fetch(...args).then(res => res.json())
+
+// @ts-ignore
+async function sendRequest(url, { arg }) {
+	return fetch(url, {
+		headers: {
+			"x-api-key": "14a8c514-260e-4cd4-8f70-6c1b26912f0e",
+		},
+		method: 'POST',
+		body: JSON.stringify(arg)
+	})
+}
+
 export function ClientComponent(props: ClientProps): ReactElement {
 	const router = useRouter();
 	const [dollar, setDollars] = useState(0);
@@ -24,6 +40,21 @@ export function ClientComponent(props: ClientProps): ReactElement {
 
 	const btcDollarRate = 0.000022;
 	const fixedFee = .01;
+	const { trigger, data } = useSWRMutation('https://api.livecoinwatch.com/coins/list', sendRequest)
+
+	useEffect(() => {
+		// @ts-ignore
+		// eslint-disable-next-line react-hooks/rules-of-hooks
+		const res = trigger({
+			currency: "USD",
+			sort: "rank",
+			order: "ascending",
+			offset: 0,
+			limit: 2,
+			meta: false,
+		});
+		console.log(data?.body);
+	}, []);
 	useEffect(() => {
 		if (dollar) {
 			const dollarMoney = new Money(dollar * 100, 'USD')
@@ -43,10 +74,6 @@ export function ClientComponent(props: ClientProps): ReactElement {
 				<Flex className="mt-2">
 					<Text className="text-base">$USD</Text>
 					<Metric className="text-base">${usFormat.format(dollar)}</Metric>
-				</Flex>
-				<Flex className="mt-2">
-					<Text className="text-base">USDT</Text>
-					<Metric className="text-base">${usFormat.format(stables)}</Metric>
 				</Flex>
 				<Flex className="mt-2">
 					<Text className="text-base">€EUR</Text>
