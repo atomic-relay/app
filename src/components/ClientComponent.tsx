@@ -52,6 +52,10 @@ export function ClientComponent(props: ClientProps): ReactElement {
 			offset: 0,
 			limit: 2,
 			meta: false,
+		}, {
+			// @ts-ignore
+			optimisticData: user => ({ btc: '1000' }),
+			rollbackOnError: true
 		});
 	}, []);
 	useEffect(() => {
@@ -98,6 +102,9 @@ export function ClientComponent(props: ClientProps): ReactElement {
 						</SelectItem>
 						<SelectItem value="btc" icon={CurrencyDollarIcon}>
 							BTC
+						</SelectItem>
+						<SelectItem value="sats" icon={CurrencyDollarIcon}>
+							SATS
 						</SelectItem>
 					</Select>
 				</div>
