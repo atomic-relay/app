@@ -30,6 +30,7 @@ export function ClientComponent(props: ClientProps): ReactElement {
 	const router = useRouter();
 	const [dollar, setDollars] = useState(1);
 	const [btc, setBTC] = useState(0);
+	const [sats, setSATS] = useState(0);
 	const [stables, setStables] = useState(0);
 	const [mxn, setPesos] = useState(0);
 	const [fee, setFee] = useState(0);
@@ -59,6 +60,7 @@ export function ClientComponent(props: ClientProps): ReactElement {
 			setStables(dollarMoney.amount * 1 / 100);
 			setPesos(Math.round(dollarMoney.amount * 16.91 / 100));
 			setBTC(dollarMoney.amount * btcDollarRate / 100);
+			setSATS(dollarMoney.amount * btcDollarRate / 100 * 1000000);
 			setFee(dollarMoney.amount * fixedFee / 100);
 		}
 	}, [dollar]);
@@ -79,7 +81,11 @@ export function ClientComponent(props: ClientProps): ReactElement {
 				</Flex>
 				<Flex className="mt-2">
 					<Text className="text-base">₿TC</Text>
-					<Metric className="text-base">₿{btc.toFixed(4)}</Metric>
+					<Metric className="text-base">₿{btc.toFixed(6)}</Metric>
+				</Flex>
+				<Flex className="mt-2">
+					<Text className="text-base">SATS</Text>
+					<Metric className="text-base">{sats.toFixed(6)}</Metric>
 				</Flex>
 				<Divider />
 				<div className="max-w-sm mx-auto space-y-6">
