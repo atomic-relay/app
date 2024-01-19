@@ -28,24 +28,23 @@ async function sendRequest(url, { arg }) {
 
 export function ClientComponent(props: ClientProps): ReactElement {
 	const router = useRouter();
-	const [dollar, setDollars] = useState(0);
+	const [dollar, setDollars] = useState(1);
 	const [btc, setBTC] = useState(0);
-	const [euro, setEuros] = useState(0);
 	const [stables, setStables] = useState(0);
 	const [mxn, setPesos] = useState(0);
 	const [fee, setFee] = useState(0);
-	const [currency, setCurrency] = useState('usd');
+	const [currency, setCurrency] = useState('usdt');
 	const [phone, setPhone] = useState<string>('');
 	const [email, setEmail] = useState<string>('');
 
-	const btcDollarRate = 0.000022;
+	const btcDollarRate= 0.000024;
 	const fixedFee = .01;
 	const { trigger, data } = useSWRMutation('https://api.livecoinwatch.com/coins/list', sendRequest)
 
 	useEffect(() => {
 		// @ts-ignore
 		// eslint-disable-next-line react-hooks/rules-of-hooks
-		const res = trigger({
+		trigger({
 			currency: "USD",
 			sort: "rank",
 			order: "ascending",
@@ -53,51 +52,40 @@ export function ClientComponent(props: ClientProps): ReactElement {
 			limit: 2,
 			meta: false,
 		});
-		console.log(data?.body);
 	}, []);
 	useEffect(() => {
 		if (dollar) {
 			const dollarMoney = new Money(dollar * 100, 'USD')
-			setEuros(Math.round(dollarMoney.amount * 1.1 / 100));
-			setStables(dollarMoney.amount * 0.999 / 100);
+			setStables(dollarMoney.amount * 1 / 100);
 			setPesos(Math.round(dollarMoney.amount * 16.91 / 100));
 			setBTC(dollarMoney.amount * btcDollarRate / 100);
 			setFee(dollarMoney.amount * fixedFee / 100);
 		}
 	}, [dollar]);
 
-	const query = `usd=${dollar}&eur=${euro}`;
+	const query = `usd=${dollar}&mxn=${mxn}`;
 	const usFormat = new Intl.NumberFormat('en-US');
+
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-self-start p-24">
 			<Card className="max-w-sm my-4 mx-auto">
 				<Flex className="mt-2">
-					<Text className="text-base">$USD</Text>
-					<Metric className="text-base">${usFormat.format(dollar)}</Metric>
+					<Text className="text-base">$USDT</Text>
+					<Metric className="text-base">${usFormat.format(stables)}</Metric>
 				</Flex>
 				<Flex className="mt-2">
-					<Text className="text-base">€EUR</Text>
-					<Metric className="text-base">€{usFormat.format(euro)}</Metric>
-				</Flex>
-				<Flex className="mt-2">
-					<Text className="text-base">₱MXN</Text>
-					<Metric className="text-base">₱{usFormat.format(mxn)}</Metric>
+					<Text className="text-base">MXN</Text>
+					<Metric className="text-base">${usFormat.format(mxn)}</Metric>
 				</Flex>
 				<Flex className="mt-2">
 					<Text className="text-base">₿TC</Text>
-					<Metric className="text-base">₿{usFormat.format(btc)}</Metric>
+					<Metric className="text-base">₿{btc.toFixed(4)}</Metric>
 				</Flex>
 				<Divider />
 				<div className="max-w-sm mx-auto space-y-6">
 					<Select value={currency} onValueChange={setCurrency}>
-						<SelectItem value="usd" icon={CurrencyDollarIcon}>
-							USD
-						</SelectItem>
 						<SelectItem value="usdt" icon={CurrencyDollarIcon}>
 							USDT
-						</SelectItem>
-						<SelectItem value="eur" icon={CurrencyDollarIcon}>
-							EUR
 						</SelectItem>
 						<SelectItem value="mxn" icon={CurrencyDollarIcon}>
 							MXN
