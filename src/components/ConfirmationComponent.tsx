@@ -1,7 +1,7 @@
 'use client'
 
 import { Button, Card, Flex, Icon, Metric, NumberInput, Text } from "@tremor/react";
-import { ArrowCircleDownIcon, CurrencyDollarIcon } from "@heroicons/react/outline";
+import { CurrencyDollarIcon, ArrowDownCircleIcon } from "@heroicons/react/24/outline";
 import { ReactElement, useState, useEffect } from "react";
 import { Money } from 'ts-money'
 
@@ -33,7 +33,7 @@ export function ConfirmationComponent(props: ConfirmationProps): ReactElement {
 					<Metric className="text-base">${dollar}</Metric>
 				</Flex>
 				<Flex className="mt-2 mx-auto">
-					<Icon className="w-8 h-8 text-center" icon={ArrowCircleDownIcon} />
+					<Icon className="w-8 h-8 text-center" icon={ArrowDownCircleIcon} />
 				</Flex>
 				<Flex className="mt-2">
 					<Text>$EUR Exchange Rate</Text>
