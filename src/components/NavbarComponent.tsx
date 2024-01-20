@@ -7,7 +7,6 @@ const navigation = [
 	{ name: 'Dashboard', href: '#', current: true },
 	{ name: 'Invoices', href: '#', current: false },
 	{ name: 'Contacts', href: '#', current: false },
-	{ name: 'Settings', href: '#', current: false },
 ]
 
 // @ts-ignore

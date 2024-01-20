@@ -26,7 +26,6 @@ async function sendRequest(url, { arg }) {
 export function ClientComponent(props: ClientProps): ReactElement {
 	const router = useRouter();
 	const [dollar, setDollars] = useState(1);
-	const [btc, setBTC] = useState(0);
 	const [sats, setSATS] = useState(0);
 	const [stables, setStables] = useState(0);
 	const [mxn, setPesos] = useState(0);
@@ -56,7 +55,6 @@ export function ClientComponent(props: ClientProps): ReactElement {
 			const dollarMoney = new Money(dollar * 100, 'USD')
 			setStables(dollarMoney.amount * 1 / 100);
 			setPesos(Math.round(dollarMoney.amount * 16.91 / 100));
-			setBTC(dollarMoney.amount * btcDollarRate / 100);
 			setSATS(dollarMoney.amount * btcDollarRate / 100 * 1000000000);
 			setFee(dollarMoney.amount * fixedFee / 100);
 		}
@@ -69,16 +67,12 @@ export function ClientComponent(props: ClientProps): ReactElement {
 		<main className="flex min-h-screen flex-col items-center justify-self-start p-24">
 			<Card className="max-w-sm my-4 mx-auto">
 				<Flex className="mt-2">
-					<Text className="text-base">$USDT</Text>
+					<Text className="text-base">USD (USDT/USDC)</Text>
 					<Metric className="text-base">${usFormat.format(stables)}</Metric>
 				</Flex>
 				<Flex className="mt-2">
 					<Text className="text-base">MXN</Text>
 					<Metric className="text-base">${usFormat.format(mxn)}</Metric>
-				</Flex>
-				<Flex className="mt-2">
-					<Text className="text-base">₿TC</Text>
-					<Metric className="text-base">₿{btc.toFixed(6)}</Metric>
 				</Flex>
 				<Flex className="mt-2">
 					<Text className="text-base">SATS</Text>
@@ -93,9 +87,6 @@ export function ClientComponent(props: ClientProps): ReactElement {
 						<SelectItem value="mxn" icon={CurrencyDollarIcon}>
 							MXN
 						</SelectItem>
-						<SelectItem value="btc" icon={CurrencyDollarIcon}>
-							BTC
-						</SelectItem>
 						<SelectItem value="sats" icon={CurrencyDollarIcon}>
 							SATS
 						</SelectItem>
@@ -107,8 +98,8 @@ export function ClientComponent(props: ClientProps): ReactElement {
 				<Divider />
 				<Button className="max-w-lg my-2" onClick={() => router.push('/confirmation?' + query + `&phone=${phone}` + `&email=${email}`)}>Submit</Button>
 				<Flex className="mt-4">
-					<Text>1% fee estimate {fee > 0 && `$`}{fee > 0 && fee}</Text>
-					<Text>Delivery 1 hr</Text>
+					<Text>Fee: {fee > 0 && `$`}{fee > 0 && fee} { fee <= 0 && `1% fee estimate`}</Text>
+					<Text>Delivery Estimate: 1 hr</Text>
 				</Flex>
 			</Card>
 		</main>
