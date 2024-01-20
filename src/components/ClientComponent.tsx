@@ -23,7 +23,7 @@ async function sendRequest(url, { arg }) {
 		},
 		method: 'POST',
 		body: JSON.stringify(arg)
-	})
+	}).then(res => res.json())
 }
 
 export function ClientComponent(props: ClientProps): ReactElement {
