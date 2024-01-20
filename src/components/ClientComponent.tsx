@@ -1,7 +1,7 @@
 "use client"
 import 'react-phone-number-input/style.css'
 import { Button, Card, Divider, Flex, Metric, NumberInput, Text, TextInput } from "@tremor/react";
-import { CurrencyDollarIcon, PhoneIcon, MailIcon } from "@heroicons/react/outline";
+import { CurrencyDollarIcon, PhoneIcon } from '@heroicons/react/24/outline'
 import { ReactElement, useState, useEffect } from "react";
 import { Money } from 'ts-money'
 import { useRouter } from 'next/router'
@@ -102,7 +102,7 @@ export function ClientComponent(props: ClientProps): ReactElement {
 					</Select>
 				</div>
 				<NumberInput className="my-2" icon={CurrencyDollarIcon} onValueChange={(val => setDollars(val))} placeholder="Send.." enableStepper={false} />
-				<TextInput icon={MailIcon} className="my-2" error={false} placeholder="Email..." onChange={(e) => setEmail(e.target.value)}/>
+				<TextInput className="my-2" error={false} placeholder="Email..." onChange={(e) => setEmail(e.target.value)}/>
 				<NumberInput icon={PhoneIcon} placeholder="+18001234" enableStepper={false} onChange={(e) => setPhone(e.target.value)} />
 				<Divider />
 				<Button className="max-w-lg my-2" onClick={() => router.push('/confirmation?' + query + `&phone=${phone}` + `&email=${email}`)}>Submit</Button>

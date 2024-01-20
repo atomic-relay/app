@@ -1,12 +1,21 @@
 "use client"
 
 import type { AppProps } from 'next/app'
-import { ClientComponent } from '@/components/ClientComponent';
 import '@radix-ui/themes/styles.css';
 import "@/styles/globals.css";
+import NavbarComponent from "@/components/NavbarComponent";
+import FooterComponent from "@/components/FooterComponent";
+import {ClerkProvider, UserButton} from '@clerk/nextjs';
 
-export default function Home({ pageProps }: AppProps) {
+
+// LAYOUT PAGE
+export default function Home({ Component, pageProps }: AppProps) {
 	return (
-		<ClientComponent data={{}} {...pageProps} />
+		<ClerkProvider {...pageProps}>
+			<NavbarComponent />
+			<UserButton afterSignOutUrl="/loggedout"/>
+			<Component {...pageProps} />
+			<FooterComponent />
+		</ClerkProvider>
 	)
 }
