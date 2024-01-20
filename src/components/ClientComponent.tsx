@@ -76,7 +76,7 @@ export function ClientComponent(props: ClientProps): ReactElement {
 				</Flex>
 				<Flex className="mt-2">
 					<Text className="text-base">SATS</Text>
-					<Metric className="text-base">{sats}</Metric>
+					<Metric className="text-base">{usFormat.format(sats)}</Metric>
 				</Flex>
 				<Divider />
 				<div className="max-w-sm mx-auto space-y-6">
