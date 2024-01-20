@@ -7,7 +7,6 @@ import "@/styles/globals.css";
 
 export default function Home({ pageProps }: AppProps) {
 	return (
-
-			<ClientComponent data={{}} {...pageProps} />
+		<ClientComponent data={{}} {...pageProps} />
 	)
 }

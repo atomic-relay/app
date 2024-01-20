@@ -13,9 +13,6 @@ interface ClientProps {
 }
 
 // @ts-ignore
-const fetcher = (...args) => fetch(...args).then(res => res.json())
-
-// @ts-ignore
 async function sendRequest(url, { arg }) {
 	return fetch(url, {
 		headers: {
@@ -52,10 +49,6 @@ export function ClientComponent(props: ClientProps): ReactElement {
 			offset: 0,
 			limit: 2,
 			meta: false,
-		}, {
-			// @ts-ignore
-			optimisticData: user => ({ btc: '1000' }),
-			rollbackOnError: true
 		});
 	}, []);
 	useEffect(() => {
