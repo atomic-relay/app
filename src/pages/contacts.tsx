@@ -62,7 +62,6 @@ export default function Contacts({ pageProps }: AppProps) {
 	return (
 		<Card className="max-w-xl my-10 mx-auto">
 			<Title>Contacts</Title>
-			<Subtitle>List</Subtitle>
 			<ul role="list" className="divide-y divide-gray-100">
 				{people.map((item: any) => (
 					<ContactComponent

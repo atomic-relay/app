@@ -6,7 +6,9 @@ import { ReactElement, useState, useEffect } from "react";
 import { Money } from 'ts-money'
 import { useRouter } from 'next/router'
 import { Select, SelectItem } from "@tremor/react";
-import useSWRMutation from 'swr/mutation'
+import useSWRMutation from 'swr/mutation';
+import { useAuth } from '@clerk/nextjs';
+import supabase from '../lib/supabaseClient';
 
 interface ClientProps {
 	data?: any;
@@ -24,6 +26,18 @@ async function sendRequest(url, { arg }) {
 }
 
 export function ClientComponent(props: ClientProps): ReactElement {
+
+	// const { getToken } = useAuth()
+
+	// const fetchData = async () => {
+	// 	const token = await getToken({ template: 'supabase' })
+	// 	// @ts-ignore
+	// 	supabase.setAuth(token)
+	// 	// TODO #2: Replace with your database table name
+	// 	const { data, error } = await supabase.from('user').select()
+	// 	// TODO #3: Handle the response
+	// 	console.log(data)
+	// }
 	const router = useRouter();
 	const [dollar, setDollars] = useState(1);
 	const [sats, setSATS] = useState(0);
