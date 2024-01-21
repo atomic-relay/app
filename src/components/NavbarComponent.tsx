@@ -2,12 +2,7 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { UserButton } from "@clerk/nextjs";
-
-const navigation = [
-	{ name: 'Dashboard', href: '#', current: true },
-	{ name: 'Invoices', href: 'invoices', current: false },
-	{ name: 'Contacts', href: 'contacts', current: false },
-]
+import { useRouter } from "next/router";
 
 // @ts-ignore
 function classNames(...classes) {
@@ -15,6 +10,14 @@ function classNames(...classes) {
 }
 
 export default function Example() {
+	const router = useRouter()
+	const { pathname } = router;
+	const navigation = [
+		{ name: 'Dashboard', href: '', current: pathname === '/' },
+		{ name: 'Invoices', href: 'invoices', current: pathname === '/invoices' },
+		{ name: 'Contacts', href: 'contacts', current: pathname === '/contacts' },
+	]
+
 	return (
 		<Disclosure as="nav" className="bg-gray-800">
 			{({ open }) => (
