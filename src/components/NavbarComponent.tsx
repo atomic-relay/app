@@ -5,8 +5,8 @@ import { UserButton } from "@clerk/nextjs";
 
 const navigation = [
 	{ name: 'Dashboard', href: '#', current: true },
-	{ name: 'Invoices', href: '#', current: false },
-	{ name: 'Contacts', href: '#', current: false },
+	{ name: 'Invoices', href: 'invoices', current: false },
+	{ name: 'Contacts', href: 'contacts', current: false },
 ]
 
 // @ts-ignore
