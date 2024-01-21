@@ -1,7 +1,6 @@
 import type { AppProps } from 'next/app'
 import {ClientComponent} from "@/components/ClientComponent";
-import { Title, Subtitle, Flex, Card } from "@tremor/react";
-
+import { Title, Subtitle, Card } from "@tremor/react";
 
 export default function Home({ pageProps }: AppProps) {
 	return (
