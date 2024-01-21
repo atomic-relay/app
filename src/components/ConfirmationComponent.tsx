@@ -1,5 +1,4 @@
-'use client'
-
+"use client"
 import { Button, Card, Flex, Icon, Metric, NumberInput, Text } from "@tremor/react";
 import { CurrencyDollarIcon, ArrowDownCircleIcon } from "@heroicons/react/24/outline";
 import { ReactElement, useState, useEffect } from "react";

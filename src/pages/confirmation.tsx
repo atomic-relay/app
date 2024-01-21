@@ -1,5 +1,5 @@
+"use client"
 import "@/styles/globals.css";
-
 import { ConfirmationComponent } from '@/components/ConfirmationComponent';
 
 export default function Confirmation({

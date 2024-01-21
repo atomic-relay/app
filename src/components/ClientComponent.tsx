@@ -41,14 +41,14 @@ export function ClientComponent(props: ClientProps): ReactElement {
 	useEffect(() => {
 		// @ts-ignore
 		// eslint-disable-next-line react-hooks/rules-of-hooks
-		trigger({
-			currency: "USD",
-			sort: "rank",
-			order: "ascending",
-			offset: 0,
-			limit: 2,
-			meta: false,
-		});
+		// trigger({
+		// 	currency: "USD",
+		// 	sort: "rank",
+		// 	order: "ascending",
+		// 	offset: 0,
+		// 	limit: 2,
+		// 	meta: false,
+		// });
 	}, []);
 	useEffect(() => {
 		if (dollar) {
