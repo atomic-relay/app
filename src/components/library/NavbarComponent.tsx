@@ -14,7 +14,7 @@ export default function Example() {
 	const { pathname } = router;
 	const navigation = [
 		{ name: 'Dashboard', href: '', current: pathname === '/' },
-		{ name: 'Invoices', href: 'invoices', current: pathname === '/invoices' },
+		{ name: 'Payments', href: 'payments', current: pathname === '/payments' },
 		{ name: 'Contacts', href: 'contacts', current: pathname === '/contacts' },
 	]
 
