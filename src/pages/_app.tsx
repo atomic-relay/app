@@ -4,8 +4,8 @@ import type { AppProps } from 'next/app'
 import { ClerkProvider } from '@clerk/nextjs';
 import '@radix-ui/themes/styles.css';
 import "@/styles/globals.css";
-import NavbarComponent from "@/components/NavbarComponent";
-import FooterComponent from "@/components/FooterComponent";
+import NavbarComponent from "../components/library/NavbarComponent";
+import FooterComponent from "../components/library/FooterComponent";
 
 
 // LAYOUT PAGE
