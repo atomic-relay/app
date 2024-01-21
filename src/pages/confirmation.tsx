@@ -1,7 +1,7 @@
 "use client"
 import "@/styles/globals.css";
 import { ConfirmationComponent } from '@/components/ConfirmationComponent';
-
+import {Card} from "@tremor/react";
 export default function Confirmation({
   params,
   searchParams,
@@ -11,5 +11,9 @@ export default function Confirmation({
 }) {
 	// const { data, error, isLoading } = useSWR('/api/v3/orders');
 	console.log(searchParams, 'SEARCH PARAMS');
-	return <ConfirmationComponent searchParams={searchParams || {}} />
+	return (
+		<Card className="max-w-md my-4 mx-auto">
+				<ConfirmationComponent searchParams={searchParams || {}} />
+		</Card>
+	)
 }
