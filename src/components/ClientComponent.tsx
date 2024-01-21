@@ -82,7 +82,7 @@ export function ClientComponent(props: ClientProps): ReactElement {
 				<div className="max-w-sm mx-auto space-y-6">
 					<Select value={currency} onValueChange={setCurrency}>
 						<SelectItem value="usdt" icon={CurrencyDollarIcon}>
-							USDT
+							USD
 						</SelectItem>
 						<SelectItem value="mxn" icon={CurrencyDollarIcon}>
 							MXN
