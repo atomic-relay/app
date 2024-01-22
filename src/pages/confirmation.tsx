@@ -1,6 +1,6 @@
 "use client"
 import "@/styles/globals.css";
-import { ConfirmationComponent } from '@/components/ConfirmationComponent';
+import { ConfirmationComponent } from '@/components/pages/ConfirmationComponent';
 import {Card} from "@tremor/react";
 export default function Confirmation({
   params,

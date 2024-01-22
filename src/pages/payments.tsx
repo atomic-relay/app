@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app'
 import { Title, Subtitle, Card } from "@tremor/react";
 import React from "react";
-import PaymentComponent from "@/components/PaymentComponent";
+import PaymentComponent from "@/components/pages/PaymentComponent";
 
 const payments = [
 	{

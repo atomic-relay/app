@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 import { Select, SelectItem } from "@tremor/react";
 import useSWRMutation from 'swr/mutation';
 import { useAuth } from '@clerk/nextjs';
-import supabase from '../lib/supabaseClient';
+import supabase from '../../lib/supabaseClient';
 
 interface ClientProps {
 	data?: any;

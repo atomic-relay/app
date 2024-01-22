@@ -1,5 +1,4 @@
 import React from 'react';
-
 export default function ContactComponent(props: any) {
 	const person = props.item
 	return (
