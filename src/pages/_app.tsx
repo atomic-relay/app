@@ -8,8 +8,10 @@ import NavbarComponent from "../components/library/NavbarComponent";
 import FooterComponent from "../components/library/FooterComponent";
 
 
-// LAYOUT PAGE
 export default function Home({ Component, pageProps }: AppProps) {
+	//  TODO add is logged in / logged out logic
+	// Allow for sidebar taiilwind UI for logged in
+	// Allow for top nav footer nav for logged out state
 	return (
 		<ClerkProvider {...pageProps}>
 			<NavbarComponent />
