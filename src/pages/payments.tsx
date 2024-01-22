@@ -1,7 +1,27 @@
+"use client"
+
 import type { AppProps } from 'next/app'
-import { Title, Subtitle, Card } from "@tremor/react";
+import { Title, Card } from "@tremor/react";
 import React from "react";
 import PaymentComponent from "@/components/pages/PaymentComponent";
+import { supabase } from '@/lib/supabaseClient'
+
+import {getPaymentsByUserId} from "@/queries/getPaymentsByUserId";
+import useSWR from 'swr';
+
+function usePaymentsQuery(
+	paymentsId: string
+) {
+	const key = ['payments', '1234'];
+
+	return useSWR(key, async () => {
+		return getPaymentsByUserId(supabase, paymentsId).then(
+		// @ts-ignore
+			(result) => result.data
+		);
+	});
+}
+
 
 const payments = [
 	{
@@ -48,6 +68,9 @@ const payments = [
 	},
 ]
 export default function Home({ pageProps }: AppProps) {
+	const { data: paymentsRes } = usePaymentsQuery('');
+	console.log(paymentsRes)
+
 	return (
 		<Card className="max-w-xl my-10 mx-auto">
 			<Title>Payment</Title>
