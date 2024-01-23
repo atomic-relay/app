@@ -6,7 +6,12 @@
     "dev": "sst bind next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "fmt": "prettier --write .",
+    "prepare": "husky install",
+    "lint-staged": {
+      "**/*": "prettier --write --ignore-unknown"
+    }
   },
   "dependencies": {
     "@alch/alchemy-web3": "^1.4.7",
@@ -48,7 +53,11 @@
     "constructs": "10.3.0",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
+    "eslint-plugin-typescript-formatter": "^0.0.2",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
     "postcss": "^8",
+    "prettier": "3.2.4",
     "sst": "^2.39.7",
     "supabase": "^1.131.5",
     "tailwindcss": "^3.3.0",
