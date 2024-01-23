@@ -13,7 +13,7 @@ export default function Example() {
   const router = useRouter();
   const { pathname } = router;
   const navigation = [
-    { name: "Dashboard", href: "", current: pathname === "/" },
+    { name: "Dashboard", href: "/", current: pathname === "/" },
     { name: "Payments", href: "payments", current: pathname === "/payments" },
     { name: "Contacts", href: "contacts", current: pathname === "/contacts" },
   ];
