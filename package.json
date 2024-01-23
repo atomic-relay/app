@@ -8,10 +8,10 @@
     "start": "next start",
     "lint": "next lint",
     "fmt": "prettier --write .",
-    "prepare": "husky install",
-    "lint-staged": {
-      "**/*": "prettier --write --ignore-unknown"
-    }
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
     "@alch/alchemy-web3": "^1.4.7",
