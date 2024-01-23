@@ -6,7 +6,7 @@ import React from "react";
 import PaymentComponent from "@/components/pages/PaymentComponent";
 import { supabase } from '@/lib/supabaseClient'
 
-import {getPaymentsByUserId} from "@/queries/getPaymentsByUserId";
+import {getPayments} from "@/queries/getPaymentsByUserId";
 import useSWR from 'swr';
 
 function usePaymentsQuery(
@@ -14,10 +14,8 @@ function usePaymentsQuery(
 ) {
 	const key = ['payments', '1234'];
 	return useSWR(key, async () => {
-		console.log('fetching payments');
-		return getPaymentsByUserId(supabase, paymentsId).then(
-		// @ts-ignore
-			(result) => result.data
+		return getPayments(supabase,).then(
+			(result) => result
 		);
 	});
 }
@@ -68,9 +66,13 @@ const payments = [
 	},
 ]
 export default function Home(props: AppProps) {
-	const { data: paymentsRes, error } = usePaymentsQuery('');
-	console.log(paymentsRes);
-	console.log(error);
+	const res = usePaymentsQuery('');
+	console.log(res.isLoading);
+
+	console.log(res.isValidating);
+
+
+
 
 	return (
 		<Card className="max-w-xl my-10 mx-auto">

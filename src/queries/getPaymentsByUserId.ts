@@ -6,8 +6,16 @@ export function getPaymentsByUserId(
 ) {
 	return client
 		.from('payments')
-		.select(`id`)
-		// .eq('user_id', userId)
-		.throwOnError()
-		.single();
+		.select()
+		.eq('user_id', userId)
+		.throwOnError();
+}
+
+export function getPayments(
+	client: SupabaseClient
+){
+	return client
+		.from('payments')
+		.select()
+		.throwOnError();
 }
