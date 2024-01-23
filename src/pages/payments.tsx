@@ -13,8 +13,8 @@ function usePaymentsQuery(
 	paymentsId: string
 ) {
 	const key = ['payments', '1234'];
-
 	return useSWR(key, async () => {
+		console.log('fetching payments');
 		return getPaymentsByUserId(supabase, paymentsId).then(
 		// @ts-ignore
 			(result) => result.data
@@ -67,9 +67,10 @@ const payments = [
 		amount: '$1000'
 	},
 ]
-export default function Home({ pageProps }: AppProps) {
-	const { data: paymentsRes } = usePaymentsQuery('');
-	console.log(paymentsRes)
+export default function Home(props: AppProps) {
+	const { data: paymentsRes, error } = usePaymentsQuery('');
+	console.log(paymentsRes);
+	console.log(error);
 
 	return (
 		<Card className="max-w-xl my-10 mx-auto">

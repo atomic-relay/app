@@ -6,7 +6,7 @@ export function getPaymentsByUserId(
 ) {
 	return client
 		.from('payments')
-		.select(`*`)
+		.select(`id`)
 		// .eq('user_id', userId)
 		.throwOnError()
 		.single();
