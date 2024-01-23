@@ -3,11 +3,16 @@ import {
   JwtAuthProvider,
 } from "@lightsparkdev/react-wallet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Redis } from "@upstash/redis";
 
 import "@radix-ui/themes/styles.css";
 import "@/styles/globals.css";
 
-export default function RootLayout({
+const redis = Redis.fromEnv();
+
+export const revalidate = 0; // disable cache
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -19,6 +24,10 @@ export default function RootLayout({
       },
     },
   });
+
+  const member = await redis.srandmember<string>("nextjs13");
+
+  alert(member);
 
   return (
     <QueryClientProvider client={queryClient}>
