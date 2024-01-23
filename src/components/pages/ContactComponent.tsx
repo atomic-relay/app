@@ -2,7 +2,10 @@ import React from "react";
 export default function ContactComponent(props: any) {
   const person = props.item;
   return (
-    <li key={person.email} className="flex justify-between gap-x-6 py-5">
+    <li
+      key={person.email + Date.now().toString()}
+      className="flex justify-between gap-x-6 py-5"
+    >
       <div className="flex min-w-0 gap-x-4">
         {/*<img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={person.imageUrl} alt="" />*/}
         <div className="min-w-0 flex-auto">

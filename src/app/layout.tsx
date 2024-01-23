@@ -4,7 +4,6 @@ import {
 } from "@lightsparkdev/react-wallet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Redis } from "@upstash/redis";
-
 import "@radix-ui/themes/styles.css";
 import "@/styles/globals.css";
 
@@ -26,8 +25,6 @@ export default async function RootLayout({
   });
 
   const member = await redis.srandmember<string>("nextjs13");
-
-  alert(member);
 
   return (
     <QueryClientProvider client={queryClient}>

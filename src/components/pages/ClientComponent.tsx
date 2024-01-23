@@ -16,8 +16,8 @@ import { Money } from "ts-money";
 import { useRouter } from "next/router";
 import { Select, SelectItem } from "@tremor/react";
 import useSWRMutation from "swr/mutation";
-import { useAuth } from "@clerk/nextjs";
-import supabase from "../../lib/supabaseClient";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface ClientProps {
   data?: any;
@@ -87,9 +87,15 @@ export function ClientComponent(props: ClientProps): ReactElement {
 
   const query = `usd=${dollar}&mxn=${mxn}`;
   const usFormat = new Intl.NumberFormat("en-US");
+  useEffect(() => {
+    toast.success("Success Notification !", {
+      position: "top-right",
+    });
+  }, []);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-self-start p-24">
+      <ToastContainer />
       <Card className="max-w-sm my-4 mx-auto">
         <Flex className="mt-2">
           <Text className="text-base">USD (USDT/USDC)</Text>

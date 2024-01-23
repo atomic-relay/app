@@ -64,7 +64,7 @@ export default function Contacts({ pageProps }: AppProps) {
       <Title>Contacts</Title>
       <ul role="list" className="divide-y divide-gray-100">
         {people.map((item: any) => (
-          <ContactComponent item={item} key={item.id} />
+          <ContactComponent item={item} key={item.email + Date.now()} />
         ))}
       </ul>
     </Card>
