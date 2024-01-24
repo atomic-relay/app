@@ -14,18 +14,23 @@ import {
 } from "@heroicons/react/24/outline";
 import { ReactElement, useState, useEffect } from "react";
 import { Money } from "ts-money";
+import { useRouter } from "next/router";
 
 interface ConfirmationProps {
   searchParams: any;
 }
 
 export function ConfirmationComponent(props: ConfirmationProps): ReactElement {
-  const usd = parseInt(props?.searchParams["usd"] || "0");
-  const eur = parseInt(props?.searchParams["eur"] || "0");
+  const router = useRouter();
 
-  const [dollar, setDollars] = useState(usd);
-  const [euro, setEuros] = useState(eur);
-  const exchangeRate = 1.1;
+  const { keyword1: base, keyword2: exchange } = router.query;
+  const baseAmount = parseInt(props?.searchParams[base] || "0");
+  const exchangeAmount = parseInt(props?.searchParams[exchange] || "0");
+  const rate = parseInt(props?.searchParams["rate"]);
+
+  const [dollar, setDollars] = useState(baseAmount);
+  const [euro, setEuros] = useState(exchangeAmount);
+  const exchangeRate = rate || 1.1;
 
   useEffect(() => {
     if (dollar) {
@@ -44,14 +49,14 @@ export function ConfirmationComponent(props: ConfirmationProps): ReactElement {
           placeholder="Send.."
         />
         <Flex className="mt-2">
-          <Text>$USD Exchange Rate</Text>
+          <Text>$USD Rate</Text>
           <Metric className="text-base">${dollar}</Metric>
         </Flex>
         <Flex className="mt-2 mx-auto">
           <Icon className="w-8 h-8 text-center" icon={ArrowDownCircleIcon} />
         </Flex>
         <Flex className="mt-2">
-          <Text>$EUR Exchange Rate</Text>
+          <Text>$EUR Rate</Text>
           <Metric className="text-base">${euro}</Metric>
         </Flex>
         <Button className="my-2" onClick={() => setDollars(0)}>
@@ -59,7 +64,7 @@ export function ConfirmationComponent(props: ConfirmationProps): ReactElement {
         </Button>
         <Flex className="mt-4">
           <Text>1% fee</Text>
-          <Text>Delivery 1 hr</Text>
+          <Text>Delivery 1-24 hrs</Text>
         </Flex>
       </Card>
     </main>
