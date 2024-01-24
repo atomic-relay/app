@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app";
-import { ClientComponent } from "@/components/pages/ClientComponent";
+import { InvoiceComponent } from "@/components/pages/InvoiceComponent";
 export default function Home({ pageProps }: AppProps) {
-  return <ClientComponent data={{}} {...pageProps} />;
+  return <InvoiceComponent data={{}} {...pageProps} />;
 }

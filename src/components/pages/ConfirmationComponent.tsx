@@ -23,9 +23,11 @@ interface ConfirmationProps {
 export function ConfirmationComponent(props: ConfirmationProps): ReactElement {
   const router = useRouter();
 
-  const { keyword1: base, keyword2: exchange } = router.query;
-  const baseAmount = parseInt(props?.searchParams[base] || "0");
-  const exchangeAmount = parseInt(props?.searchParams[exchange] || "0");
+  const { keyword1: base = "", keyword2: exchange = "" } = router.query;
+  const baseAmount = parseInt(props?.searchParams[base.toString()] || "0");
+  const exchangeAmount = parseInt(
+    props?.searchParams[exchange.toString()] || "0",
+  );
   const rate = parseInt(props?.searchParams["rate"]);
 
   const [dollar, setDollars] = useState(baseAmount);

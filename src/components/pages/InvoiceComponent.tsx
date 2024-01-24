@@ -34,9 +34,8 @@ async function sendRequest(url, { arg }) {
   }).then((res) => res.json());
 }
 
-export function ClientComponent(props: ClientProps): ReactElement {
+export function InvoiceComponent(props: ClientProps): ReactElement {
   // const { getToken } = useAuth()
-
   // const fetchData = async () => {
   // 	const token = await getToken({ template: 'supabase' })
   // 	// @ts-ignore
@@ -58,23 +57,22 @@ export function ClientComponent(props: ClientProps): ReactElement {
 
   const btcDollarRate = 0.000024;
   const fixedFee = 0.01;
-  const { trigger, data } = useSWRMutation(
-    "https://api.livecoinwatch.com/coins/list",
-    sendRequest,
-  );
 
-  useEffect(() => {
-    // @ts-ignore
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    // trigger({
-    // 	currency: "USD",
-    // 	sort: "rank",
-    // 	order: "ascending",
-    // 	offset: 0,
-    // 	limit: 2,
-    // 	meta: false,
-    // });
-  }, []);
+  // const { trigger, data } = useSWRMutation(
+  //   "https://api.livecoinwatch.com/coins/list",
+  //   sendRequest,
+  // );
+  // useEffect(() => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  // trigger({
+  // 	currency: "USD",
+  // 	sort: "rank",
+  // 	order: "ascending",
+  // 	offset: 0,
+  // 	limit: 2,
+  // 	meta: false,
+  // });
+  // }, []);
   useEffect(() => {
     if (dollar) {
       const dollarMoney = new Money(dollar * 100, "USD");
