@@ -1,5 +1,3 @@
-"use client";
-
 import "react-phone-number-input/style.css";
 import {
   Button,
@@ -20,6 +18,7 @@ import useSWRMutation from "swr/mutation";
 import { supabase } from "@/lib/supabaseClient";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import RealtimeInvoices from "@/components/pages/RealtimeInvoices";
 
 interface ClientProps {
   data?: any;
@@ -36,11 +35,16 @@ async function sendCurrRequest(url, { arg }) {
   }).then((res) => res.json());
 }
 
-export function InvoiceComponent(props: ClientProps): ReactElement {
+export async function InvoiceComponent(
+  props: ClientProps,
+): Promise<ReactElement> {
+  const [payments, setPayments] = useState<any[]>([]);
   const fetchData = async () => {
     const { data, error } = await supabase.from("payments").select();
     console.log(data);
   };
+
+  const { data: serverInvoices } = await supabase.from("posts").select("*");
 
   useEffect(() => {
     fetchData().then((r) => console.log(r));
@@ -95,6 +99,7 @@ export function InvoiceComponent(props: ClientProps): ReactElement {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-self-start p-24">
+      <RealtimeInvoices serverInvoices={serverInvoices} />
       <ToastContainer />
       <Card className="max-w-sm my-4 mx-auto">
         <Flex className="mt-2">

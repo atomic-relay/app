@@ -9,8 +9,7 @@ import "@/styles/globals.css";
 
 const redis = Redis.fromEnv();
 
-export const revalidate = 0; // disable cache
-
+export const revalidate = 10; // cache limit
 export default async function RootLayout({
   children,
 }: {

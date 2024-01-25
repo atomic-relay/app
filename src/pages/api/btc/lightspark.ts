@@ -21,7 +21,6 @@ const main = async () => {
     variables: { network: BitcoinNetwork.MAINNET },
     constructObject: (json) => json["current_account"]["conductivity"],
   });
-
   console.log(`My conductivity on MAINNET is ${conductivity}.`);
 };
 
