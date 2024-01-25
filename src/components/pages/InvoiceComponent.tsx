@@ -1,3 +1,5 @@
+"use client";
+
 import "react-phone-number-input/style.css";
 import {
   Button,
@@ -18,7 +20,7 @@ import useSWRMutation from "swr/mutation";
 import { supabase } from "@/lib/supabaseClient";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import RealtimeInvoices from "@/components/pages/RealtimeInvoices";
+import ServerInvoices from "@/components/pages/ServerInvoices";
 
 interface ClientProps {
   data?: any;
@@ -35,16 +37,29 @@ async function sendCurrRequest(url, { arg }) {
   }).then((res) => res.json());
 }
 
-export async function InvoiceComponent(
-  props: ClientProps,
-): Promise<ReactElement> {
-  const [payments, setPayments] = useState<any[]>([]);
+export function InvoiceComponent(props: ClientProps): ReactElement {
   const fetchData = async () => {
     const { data, error } = await supabase.from("payments").select();
     console.log(data);
   };
 
-  const { data: serverInvoices } = await supabase.from("posts").select("*");
+  const [invoices, setInvoices] = useState<any[]>([]);
+
+  useEffect(() => {
+    const channel = supabase
+      .channel("*")
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "payments" },
+        (payload: any) =>
+          setInvoices((prevInvoices: any) => [...prevInvoices, payload.new]),
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [invoices]);
 
   useEffect(() => {
     fetchData().then((r) => console.log(r));
@@ -59,7 +74,6 @@ export async function InvoiceComponent(
   const [currency, setCurrency] = useState("usdt");
   const [phone, setPhone] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-
   const btcDollarRate = 0.000024;
   const fixedFee = 0.01;
 
@@ -82,7 +96,7 @@ export async function InvoiceComponent(
   useEffect(() => {
     if (dollar) {
       const dollarMoney = new Money(dollar * 100, "USD");
-      setStables((dollarMoney.amount * 1) / 100);
+      setStables(dollarMoney.amount / 100);
       setPesos(Math.round((dollarMoney.amount * 16.91) / 100));
       setSATS(((dollarMoney.amount * btcDollarRate) / 100) * 1000000000);
       setFee((dollarMoney.amount * fixedFee) / 100);
@@ -91,6 +105,7 @@ export async function InvoiceComponent(
 
   const query = `usd=${dollar}&mxn=${mxn}`;
   const usFormat = new Intl.NumberFormat("en-US");
+
   useEffect(() => {
     toast.success("Success Notification !", {
       position: "top-right",
@@ -99,7 +114,7 @@ export async function InvoiceComponent(
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-self-start p-24">
-      <RealtimeInvoices serverInvoices={serverInvoices} />
+      {/*<ServerInvoices setInvoices={setInvoices} />*/}
       <ToastContainer />
       <Card className="max-w-sm my-4 mx-auto">
         <Flex className="mt-2">
