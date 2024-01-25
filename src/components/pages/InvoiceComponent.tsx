@@ -14,16 +14,15 @@ import {
 import { CurrencyDollarIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import { ReactElement, useState, useEffect } from "react";
 import { Money } from "ts-money";
-import { useRouter } from "next/router";
 import { Select, SelectItem } from "@tremor/react";
 import useSWRMutation from "swr/mutation";
 import { supabase } from "@/lib/supabaseClient";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ServerInvoices from "@/components/pages/ServerInvoices";
+import Link from "next/link";
 
 interface ClientProps {
-  data?: any;
+  serverInvoices: any[];
 }
 
 // @ts-ignore
@@ -37,13 +36,30 @@ async function sendCurrRequest(url, { arg }) {
   }).then((res) => res.json());
 }
 
-export function InvoiceComponent(props: ClientProps): ReactElement {
-  const fetchData = async () => {
-    const { data, error } = await supabase.from("payments").select();
-    console.log(data);
-  };
+const fetchData = async () => {
+  const { data, error } = await supabase.from("payments").select();
+  console.log(data);
+};
 
+export function InvoiceComponent(props: ClientProps): ReactElement {
   const [invoices, setInvoices] = useState<any[]>([]);
+  const { serverInvoices } = props;
+
+  const [dollar, setDollars] = useState(1);
+  const [sats, setSATS] = useState(0);
+  const [stables, setStables] = useState(0);
+  const [mxn, setPesos] = useState(0);
+  const [fee, setFee] = useState(0);
+  const [currency, setCurrency] = useState("usdt");
+  const [phone, setPhone] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const btcDollarRate = 0.000024;
+  const fixedFee = 0.01;
+
+  const { trigger, data } = useSWRMutation(
+    "https://api.livecoinwatch.com/coins/list",
+    sendCurrRequest,
+  );
 
   useEffect(() => {
     const channel = supabase
@@ -65,22 +81,6 @@ export function InvoiceComponent(props: ClientProps): ReactElement {
     fetchData().then((r) => console.log(r));
   }, []);
 
-  const router = useRouter();
-  const [dollar, setDollars] = useState(1);
-  const [sats, setSATS] = useState(0);
-  const [stables, setStables] = useState(0);
-  const [mxn, setPesos] = useState(0);
-  const [fee, setFee] = useState(0);
-  const [currency, setCurrency] = useState("usdt");
-  const [phone, setPhone] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const btcDollarRate = 0.000024;
-  const fixedFee = 0.01;
-
-  const { trigger, data } = useSWRMutation(
-    "https://api.livecoinwatch.com/coins/list",
-    sendCurrRequest,
-  );
   useEffect(() => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     trigger({
@@ -91,7 +91,7 @@ export function InvoiceComponent(props: ClientProps): ReactElement {
       limit: 2,
       meta: false,
     });
-  }, [trigger]);
+  }, []);
 
   useEffect(() => {
     if (dollar) {
@@ -103,18 +103,17 @@ export function InvoiceComponent(props: ClientProps): ReactElement {
     }
   }, [dollar]);
 
-  const query = `usd=${dollar}&mxn=${mxn}`;
-  const usFormat = new Intl.NumberFormat("en-US");
-
   useEffect(() => {
     toast.success("Success Notification !", {
       position: "top-right",
     });
   }, []);
 
+  const query = `usd=${dollar}&mxn=${mxn}`;
+  const usFormat = new Intl.NumberFormat("en-US");
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-self-start p-24">
-      {/*<ServerInvoices setInvoices={setInvoices} />*/}
       <ToastContainer />
       <Card className="max-w-sm my-4 mx-auto">
         <Flex className="mt-2">
@@ -163,16 +162,11 @@ export function InvoiceComponent(props: ClientProps): ReactElement {
           onChange={(e) => setPhone(e.target.value)}
         />
         <Divider />
-        <Button
-          className="max-w-lg my-2"
-          onClick={() =>
-            router.push(
-              "/confirmation?" + query + `&phone=${phone}` + `&email=${email}`,
-            )
-          }
+        <Link
+          href={"confirmation?" + query + `&phone=${phone}` + `&email=${email}`}
         >
-          Submit
-        </Button>
+          <Button className="max-w-lg my-2">Submit</Button>
+        </Link>
         <Flex className="mt-4">
           <Text>
             Fee: {fee > 0 && `$`}

@@ -2,20 +2,20 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { UserButton } from "@clerk/nextjs";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 // @ts-ignore
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
-  const router = useRouter();
-  const { pathname } = router;
+export default function NavbarComponent() {
+  const pathname = usePathname();
   const navigation = [
     { name: "Dashboard", href: "/", current: pathname === "/" },
     { name: "Payments", href: "payments", current: pathname === "/payments" },
     { name: "Contacts", href: "contacts", current: pathname === "/contacts" },
+    { name: "Bitcoin", href: "btc", current: pathname === "/btc" },
   ];
 
   return (

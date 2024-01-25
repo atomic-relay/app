@@ -14,16 +14,14 @@ import {
 } from "@heroicons/react/24/outline";
 import { ReactElement, useState, useEffect } from "react";
 import { Money } from "ts-money";
-import { useRouter } from "next/router";
 
 interface ConfirmationProps {
   searchParams: any;
 }
 
 export function ConfirmationComponent(props: ConfirmationProps): ReactElement {
-  const router = useRouter();
-
-  const { keyword1: base = "", keyword2: exchange = "" } = router.query;
+  const base = "USD";
+  const exchange = "EUR";
   const baseAmount = parseInt(props?.searchParams[base.toString()] || "0");
   const exchangeAmount = parseInt(
     props?.searchParams[exchange.toString()] || "0",

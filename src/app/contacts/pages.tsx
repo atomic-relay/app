@@ -1,7 +1,6 @@
 import type { AppProps } from "next/app";
-import { Title, Subtitle, Card } from "@tremor/react";
+import { Title, Card } from "@tremor/react";
 import ContactComponent from "@/components/pages/ContactComponent";
-import React from "react";
 
 const people = [
   {
