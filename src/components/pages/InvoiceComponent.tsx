@@ -1,4 +1,5 @@
 "use client";
+
 import "react-phone-number-input/style.css";
 import {
   Button,
@@ -16,6 +17,7 @@ import { Money } from "ts-money";
 import { useRouter } from "next/router";
 import { Select, SelectItem } from "@tremor/react";
 import useSWRMutation from "swr/mutation";
+import { supabase } from "@/lib/supabaseClient";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -24,10 +26,10 @@ interface ClientProps {
 }
 
 // @ts-ignore
-async function sendRequest(url, { arg }) {
+async function sendCurrRequest(url, { arg }) {
   return fetch(url, {
     headers: {
-      "x-api-key": "14a8c514-260e-4cd4-8f70-6c1b26912f0e",
+      "x-api-key": `${process.env.NEXT_LIVECOIN_WATCH_API_KEY}`,
     },
     method: "POST",
     body: JSON.stringify(arg),
@@ -35,16 +37,15 @@ async function sendRequest(url, { arg }) {
 }
 
 export function InvoiceComponent(props: ClientProps): ReactElement {
-  // const { getToken } = useAuth()
-  // const fetchData = async () => {
-  // 	const token = await getToken({ template: 'supabase' })
-  // 	// @ts-ignore
-  // 	supabase.setAuth(token)
-  // 	// TODO #2: Replace with your database table name
-  // 	const { data, error } = await supabase.from('user').select()
-  // 	// TODO #3: Handle the response
-  // 	console.log(data)
-  // }
+  const fetchData = async () => {
+    const { data, error } = await supabase.from("payments").select();
+    console.log(data);
+  };
+
+  useEffect(() => {
+    fetchData().then((r) => console.log(r));
+  }, []);
+
   const router = useRouter();
   const [dollar, setDollars] = useState(1);
   const [sats, setSATS] = useState(0);
@@ -58,21 +59,22 @@ export function InvoiceComponent(props: ClientProps): ReactElement {
   const btcDollarRate = 0.000024;
   const fixedFee = 0.01;
 
-  // const { trigger, data } = useSWRMutation(
-  //   "https://api.livecoinwatch.com/coins/list",
-  //   sendRequest,
-  // );
-  // useEffect(() => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  // trigger({
-  // 	currency: "USD",
-  // 	sort: "rank",
-  // 	order: "ascending",
-  // 	offset: 0,
-  // 	limit: 2,
-  // 	meta: false,
-  // });
-  // }, []);
+  const { trigger, data } = useSWRMutation(
+    "https://api.livecoinwatch.com/coins/list",
+    sendCurrRequest,
+  );
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    trigger({
+      currency: "USD",
+      sort: "rank",
+      order: "ascending",
+      offset: 0,
+      limit: 2,
+      meta: false,
+    });
+  }, [trigger]);
+
   useEffect(() => {
     if (dollar) {
       const dollarMoney = new Money(dollar * 100, "USD");
