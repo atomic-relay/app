@@ -58,7 +58,7 @@ const people = [
   },
 ];
 
-export default function Contacts({ pageProps }: AppProps) {
+export default function Contacts() {
   return (
     <WrapperComponent>
       <Card className="max-w-xl my-10 mx-auto">

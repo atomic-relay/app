@@ -6,7 +6,7 @@ export default function Page({ children }: any) {
   return (
     <div>
       <NavbarComponent />
-      {children}
+      <div className="min-h-screen">{children}</div>
       <FooterComponent />
     </div>
   );

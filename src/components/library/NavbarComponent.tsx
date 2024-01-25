@@ -1,8 +1,10 @@
+"use client";
+
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { UserButton } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 // @ts-ignore
 function classNames(...classes) {
@@ -78,7 +80,12 @@ export default function NavbarComponent() {
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                      <UserButton afterSignOutUrl="/loggedout" />
+                      <SignedIn>
+                        <UserButton afterSignOutUrl="/login" />
+                      </SignedIn>
+                      <SignedOut>
+                        <SignInButton />
+                      </SignedOut>
                     </Menu.Button>
                   </div>
                   <Transition

@@ -2,7 +2,7 @@
 import { AreaChart, Card, Title } from "@tremor/react";
 import { ReactElement } from "react";
 
-const chartdata = [
+const chartData = [
   {
     date: "Jan 2023",
     USD: 18000,
@@ -46,9 +46,9 @@ export function BitcoinChartComponent(): ReactElement {
         <Title>Price Over Time</Title>
         <AreaChart
           className="h-72 mt-2"
-          data={chartdata}
+          data={chartData}
           index="date"
-          categories={["USD", "SATS"]}
+          categories={["USD", "SAT"]}
           colors={["green", "red"]}
           valueFormatter={valueFormatter}
         />
