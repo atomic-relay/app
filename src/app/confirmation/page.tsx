@@ -1,5 +1,7 @@
 import { ConfirmationComponent } from "@/components/pages/ConfirmationComponent";
 import { Card } from "@tremor/react";
+import WrapperComponent from "@/components/WrapperComponent";
+
 export default function Confirmation({
   params,
   searchParams,
@@ -8,8 +10,10 @@ export default function Confirmation({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   return (
-    <Card className="max-w-md my-4 mx-auto">
-      <ConfirmationComponent searchParams={searchParams || {}} />
-    </Card>
+    <WrapperComponent>
+      <Card className="max-w-md my-4 mx-auto">
+        <ConfirmationComponent searchParams={searchParams || {}} />
+      </Card>
+    </WrapperComponent>
   );
 }

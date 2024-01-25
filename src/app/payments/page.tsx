@@ -1,6 +1,7 @@
 import React from "react";
 import { Title, Card } from "@tremor/react";
 import PaymentComponent from "@/components/pages/PaymentComponent";
+import WrapperComponent from "@/components/WrapperComponent";
 
 const payments = [
   {
@@ -48,15 +49,17 @@ const payments = [
 ];
 export default function Home() {
   return (
-    <Card className="max-w-xl my-10 mx-auto">
-      <Title>Payment</Title>
-      <ul role="list" className="divide-y divide-gray-100">
-        <div>
-          {payments.map((item: any) => (
-            <PaymentComponent item={item} key={item.id} />
-          ))}
-        </div>
-      </ul>
-    </Card>
+    <WrapperComponent>
+      <Card className="max-w-xl my-10 mx-auto">
+        <Title>Payment</Title>
+        <ul role="list" className="divide-y divide-gray-100">
+          <div>
+            {payments.map((item: any) => (
+              <PaymentComponent item={item} key={item.id} />
+            ))}
+          </div>
+        </ul>
+      </Card>
+    </WrapperComponent>
   );
 }

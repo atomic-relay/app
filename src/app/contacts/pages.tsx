@@ -1,6 +1,7 @@
 import type { AppProps } from "next/app";
 import { Title, Card } from "@tremor/react";
 import ContactComponent from "@/components/pages/ContactComponent";
+import WrapperComponent from "@/components/WrapperComponent";
 
 const people = [
   {
@@ -59,13 +60,15 @@ const people = [
 
 export default function Contacts({ pageProps }: AppProps) {
   return (
-    <Card className="max-w-xl my-10 mx-auto">
-      <Title>Contacts</Title>
-      <ul role="list" className="divide-y divide-gray-100">
-        {people.map((item: any) => (
-          <ContactComponent item={item} key={item.email + Date.now()} />
-        ))}
-      </ul>
-    </Card>
+    <WrapperComponent>
+      <Card className="max-w-xl my-10 mx-auto">
+        <Title>Contacts</Title>
+        <ul role="list" className="divide-y divide-gray-100">
+          {people.map((item: any) => (
+            <ContactComponent item={item} key={item.email + Date.now()} />
+          ))}
+        </ul>
+      </Card>
+    </WrapperComponent>
   );
 }
