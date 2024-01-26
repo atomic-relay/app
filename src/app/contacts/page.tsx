@@ -1,4 +1,3 @@
-import type { AppProps } from "next/app";
 import { Title, Card } from "@tremor/react";
 import ContactComponent from "@/components/pages/ContactComponent";
 import WrapperComponent from "@/components/WrapperComponent";
