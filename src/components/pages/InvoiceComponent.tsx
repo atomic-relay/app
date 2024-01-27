@@ -11,6 +11,7 @@ import {
   Text,
   TextInput,
 } from "@tremor/react";
+import { useApiRequest } from "@/hooks/useApiRequest";
 import { CurrencyDollarIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import { ReactElement, useState, useEffect } from "react";
 import { Money } from "ts-money";
@@ -43,7 +44,6 @@ const fetchData = async () => {
 
 export function InvoiceComponent(props: ClientProps): ReactElement {
   const [invoices, setInvoices] = useState<any[]>([]);
-  const { serverInvoices } = props;
 
   const [dollar, setDollars] = useState(1);
   const [sats, setSATS] = useState(0);
@@ -55,11 +55,20 @@ export function InvoiceComponent(props: ClientProps): ReactElement {
   const [email, setEmail] = useState<string>("");
   const btcDollarRate = 0.000024;
   const fixedFee = 0.01;
+  //
+  // const { trigger, data } = useSWRMutation(
+  //   "https://api.livecoinwatch.com/coins/list",
+  //   sendCurrRequest,
+  // );
 
-  const { trigger, data } = useSWRMutation(
-    "https://api.livecoinwatch.com/coins/list",
-    sendCurrRequest,
+  const [fetchData, { data, loading, error }] = useApiRequest<[]>(
+    `/api/hello`,
+    `GET`,
   );
+
+  useEffect(() => {
+    void fetchData();
+  }, []);
 
   useEffect(() => {
     const channel = supabase
@@ -83,14 +92,14 @@ export function InvoiceComponent(props: ClientProps): ReactElement {
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    trigger({
-      currency: "USD",
-      sort: "rank",
-      order: "ascending",
-      offset: 0,
-      limit: 2,
-      meta: false,
-    });
+    // trigger({
+    //   currency: "USD",
+    //   sort: "rank",
+    //   order: "ascending",
+    //   offset: 0,
+    //   limit: 2,
+    //   meta: false,
+    // });
   }, []);
 
   useEffect(() => {
