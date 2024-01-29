@@ -37,7 +37,6 @@
     "react-phone-number-input": "^3.3.9",
     "react-toastify": "^10.0.4",
     "sjcl": "^1.0.8",
-    "socket.io": "^4.7.4",
     "swr": "^2.2.4",
     "ts-money": "^0.4.8"
   },
