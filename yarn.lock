@@ -1940,7 +1940,7 @@
     ws "^8.12.1"
     zen-observable-ts "^1.1.0"
 
-"@lightsparkdev/react-wallet@^0.7.1":
+"@lightsparkdev/react-wallet@^0.7.4":
   version "0.7.4"
   resolved "https://registry.yarnpkg.com/@lightsparkdev/react-wallet/-/react-wallet-0.7.4.tgz#3b10869f69be811db93be683a3bdfd0c092f5c6e"
   integrity sha512-YxppjK+qh9LU6klFdwC9zeF+1jBfZ3dl4bqZyY0qVcMhNE08zRDxwtO5vS1KJ4rZEsg0iw2KFpaVVy2w3YNwjA==

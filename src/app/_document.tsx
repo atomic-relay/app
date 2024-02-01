@@ -6,7 +6,11 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        {/*<script src="https://cdn.metricalp.com/event/metricalp.js" data-tid="mam6" defer></script>*/}
+        <script
+          src="https://cdn.metricalp.com/event/metricalp.js"
+          data-tid="mam6"
+          defer
+        ></script>
       </Head>
       <body>
         <Main />
