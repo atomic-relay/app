@@ -1,6 +1,6 @@
 {
-  "extends": "next/core-web-vitals",
-  "plugins": ["typescript-formatter"],
+  "extends": ["next/core-web-vitals", "plugin:big-number-rules/recommended"],
+  "plugins": ["typescript-formatter", "big-number-rules"],
   "rules": {
     "typescript-formatter/format": [
       "warn",

@@ -38,6 +38,7 @@
     "react-toastify": "^10.0.4",
     "sjcl": "^1.0.8",
     "swr": "^2.2.4",
+    "tigerbeetle-node": "^0.14.177",
     "ts-money": "^0.4.8"
   },
   "devDependencies": {
@@ -50,6 +51,7 @@
     "constructs": "10.3.0",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
+    "eslint-plugin-big-number-rules": "^2.2.0",
     "eslint-plugin-typescript-formatter": "^0.0.2",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
