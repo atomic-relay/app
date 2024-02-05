@@ -1,18 +1,21 @@
 //@ts-nocheck
-const assert = require("assert");
-
-const {
+import assert from "assert";
+import {
   createClient,
   CreateAccountError,
   CreateTransferError,
-} = require("tigerbeetle-node");
+} from "tigerbeetle-node";
 
-const client = createClient({
-  cluster_id: 0n,
-  replica_addresses: [process.env.TB_ADDRESS || "3000"],
-});
+import { NextApiRequest, NextApiResponse } from "next";
 
-async function main() {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  const client = createClient({
+    cluster_id: 0n,
+    replica_addresses: [process.env.TB_ADDRESS || "3000"],
+  });
   // @ts-ignore
   let accountErrors = await client.createAccounts([
     {
@@ -90,15 +93,6 @@ async function main() {
       assert.fail("Unexpected account: " + JSON.stringify(account, null, 2));
     }
   }
-
   console.log("ok");
+  return res.status(200).end();
 }
-
-main()
-  .then(() => {
-    process.exit(0);
-  })
-  .catch((e) => {
-    console.error(e);
-    process.exit(1);
-  });
