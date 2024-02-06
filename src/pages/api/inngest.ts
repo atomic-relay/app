@@ -21,7 +21,7 @@ const helloWorld = inngest.createFunction(
 
 const tigerBeetle = inngest.createFunction(
   { id: "tigerbeetle" },
-  { event: "tigerbeetle" },
+  { event: "prod/tigerbeetle" },
   async ({ event, step }) => {
     await step.sleep("wait-a-moment", "1s");
     const client = createClient({
@@ -106,5 +106,6 @@ export default serve({
   client: inngest,
   functions: [
     helloWorld, // <-- This is where you'll always add your new functions
+    tigerBeetle,
   ],
 });
