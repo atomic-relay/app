@@ -1,17 +1,21 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { inngest } from "./inngest";
 
-export default function helloWorldHandler(
+// Opt out of caching; every request should send a new event
+export const dynamic = "force-dynamic";
+
+// Create a simple async Next.js API route handler
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  // @ts-ignore
-  switch (req.method.toLowerCase()) {
-    case `get`:
-      return res.send(`Hello World`);
-    case `post`:
-    // do something else
-    default:
-      // handle unsupported methods
-      return res.status(501).end();
-  }
+  // Send your event payload to Inngest
+  await inngest.send({
+    name: "test/hello.world",
+    data: {
+      email: "testFromNext@example.com",
+    },
+  });
+
+  res.status(200).json({ name: "Hello Inngest from Next!" });
 }

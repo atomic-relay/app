@@ -30,6 +30,7 @@
     "axios": "^1.6.3",
     "crypto": "^1.0.1",
     "dotenv": "^16.3.1",
+    "inngest": "^3.13.0",
     "next": "^14.1.0",
     "react": "^18.2.0",
     "react-dom": "^18",
@@ -42,6 +43,7 @@
     "ts-money": "^0.4.8"
   },
   "devDependencies": {
+    "@pierre/recipes": "^0.0.3",
     "@tailwindcss/forms": "^0.5.7",
     "@types/node": "^20",
     "@types/react": "^18",
@@ -55,6 +57,7 @@
     "eslint-plugin-typescript-formatter": "^0.0.2",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
+    "pierre": "^2.0.12",
     "postcss": "^8.4.33",
     "prettier": "3.2.4",
     "sst": "^2.39.7",
