@@ -18,6 +18,7 @@ export default function NavbarComponent() {
     { name: "Payments", href: "payments", current: pathname === "/payments" },
     { name: "Contacts", href: "contacts", current: pathname === "/contacts" },
     { name: "Bitcoin", href: "btc", current: pathname === "/btc" },
+    { name: "Wallet", href: "wallet", current: pathname === "/wallet" },
   ];
 
   return (
