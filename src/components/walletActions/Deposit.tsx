@@ -119,7 +119,7 @@ const Deposit = ({ signingPrivateKey, walletName, close }: DepositProps) => {
             <div className="text-lg font-semibold mb-0.5">Add funds</div>
           </DialogTitle>
           <DialogDescription>
-            You're adding test funds to wallet {walletName}.
+            Youre adding test funds to wallet {walletName}.
           </DialogDescription>
         </DialogHeader>
 
@@ -212,7 +212,7 @@ const Deposit = ({ signingPrivateKey, walletName, close }: DepositProps) => {
             <div className="text-lg font-semibold mb-0.5">Add funds</div>
           </DialogTitle>
           <DialogDescription>
-            You're adding test funds to wallet {walletName}.
+            Youre adding test funds to wallet {walletName}.
           </DialogDescription>
         </DialogHeader>
 
