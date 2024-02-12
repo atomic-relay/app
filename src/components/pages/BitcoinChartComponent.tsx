@@ -58,8 +58,9 @@ export function BitcoinChartComponent(
     <main className="flex min-h-screen flex-col items-center justify-self-start p-24">
       <Card>
         <Title>Live Fees</Title>
-        <h1>Sats: {fees["sat_per_vbyte"]}</h1>
-        <h1>${satsDollars}</h1>
+        <h3>BTC: ${price}</h3>
+        <h3>Sats: {fees["sat_per_vbyte"]}</h3>
+        <h3>${satsDollars}</h3>
         <Title>Price Over Time</Title>
         <AreaChart
           className="h-72 mt-2"
