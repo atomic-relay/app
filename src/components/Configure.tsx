@@ -117,15 +117,11 @@ const Configure = ({
           </Label>
           <Snippet codeString={jwtPublicKey} />
         </div>
-
         <div className="grid w-full items-center gap-1.5 mb-2">
           <Label htmlFor="jwtPrivateKey" className="text-primary">
             JWT Private Key:
           </Label>
           <Snippet codeString={jwtPrivateKey} />
-          <p className="text-sm text-muted-foreground mb-1">
-            This will be saved in the Replit database.
-          </p>
         </div>
       </>
     );
@@ -194,26 +190,6 @@ const Configure = ({
 
   const stepOne = (
     <>
-      <DialogHeader>
-        <DialogTitle>
-          <div className="text-lg font-semibold">
-            First, paste your account ID in Replit
-          </div>
-        </DialogTitle>
-        <p className="text-sm text-muted-foreground">
-          You’ll need to manually copy and paste a couple of things to connect
-          your Replit to your Lightspark account. Everything is in your
-          Lightspark{" "}
-          <a
-            href="https://app.lightspark.com/account#security:~:text=JWT%20public%20key-,Your%20account%20ID,-%3A"
-            target="_blank"
-          >
-            account settings
-          </a>
-          .
-        </p>
-      </DialogHeader>
-
       <div className="grid w-full items-center gap-1.5 mt-4 mb-4">
         <Label
           htmlFor="accountId"
