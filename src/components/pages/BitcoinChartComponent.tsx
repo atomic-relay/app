@@ -36,21 +36,18 @@ const valueFormatter = function (number: number) {
 interface BitcoinChartComponentProps {
   price: string;
   fees: any;
+  mempool: any;
 }
 export function BitcoinChartComponent(
   props: BitcoinChartComponentProps,
 ): ReactElement {
-  const { price, fees } = props;
-  console.log(fees);
-  // fees.forEach((value: any, key: string) => {
-  //   feesData.push({ date: key, sats: value?.sat_per_vbyte || 0 });
-  // });
+  const { price, fees, mempool } = props;
   chartData.push({
     date: new Date().toLocaleString(),
     USD: parseInt(price),
   });
 
-  const averageBytes = 257;
+  const averageBytes = 140;
   const satDollarRatio = 5921;
   const satsDollars =
     (parseInt(fees["sat_per_vbyte"]) * averageBytes) / satDollarRatio;
@@ -61,6 +58,7 @@ export function BitcoinChartComponent(
         <h3>BTC: ${price}</h3>
         <h3>Sats: {fees["sat_per_vbyte"]}</h3>
         <h3>${satsDollars}</h3>
+        <h3>Mempool Volume: {mempool["56"]}</h3>
         <Title>Price Over Time</Title>
         <AreaChart
           className="h-72 mt-2"
