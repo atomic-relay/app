@@ -1,5 +1,5 @@
 "use client";
-import { AreaChart, Card, Title } from "@tremor/react";
+import { AreaChart, Card, Title, Text } from "@tremor/react";
 import { ReactElement } from "react";
 
 const chartData = [
@@ -27,6 +27,14 @@ const chartData = [
     date: "Jun 2023",
     USD: 35000,
   },
+  {
+    date: "Jan 2024",
+    USD: 46000,
+  },
+  {
+    date: "Feb 2024",
+    USD: 50400,
+  },
 ];
 
 const valueFormatter = function (number: number) {
@@ -53,12 +61,14 @@ export function BitcoinChartComponent(
     (parseInt(fees["sat_per_vbyte"]) * averageBytes) / satDollarRatio;
   return (
     <main className="flex min-h-screen flex-col items-center justify-self-start p-24">
-      <Card>
+      <Card className="my-4">
         <Title>Live Fees</Title>
-        <h3>BTC: ${price}</h3>
-        <h3>Sats: {fees["sat_per_vbyte"]}</h3>
-        <h3>${satsDollars}</h3>
-        <h3>Mempool Volume: {mempool["56"]}</h3>
+        <Text>BTC: ${price}</Text>
+        <Text>Average Sats: {fees["sat_per_vbyte"]}</Text>
+        <Text>Average Fee: ${satsDollars}</Text>
+        <Text>Mempool Volume: {mempool["56"]}</Text>
+      </Card>
+      <Card>
         <Title>Price Over Time</Title>
         <AreaChart
           className="h-72 mt-2"
