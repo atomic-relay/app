@@ -3,7 +3,7 @@ import WrapperComponent from "@/components/WrapperComponent";
 
 async function getData() {
   const price = await fetch(
-    "https://api.api-ninjas.com/v1/cryptoprice?symbol=BTCUSD",
+    "https://api.api-ninjas.com/v1/cryptoprice?symbol=BTCUSDC",
     {
       cache: "no-cache",
       headers: {
