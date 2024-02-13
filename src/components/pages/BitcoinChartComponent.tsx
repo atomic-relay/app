@@ -55,7 +55,6 @@ export function BitcoinChartComponent(
     date: new Date().toLocaleString(),
     USD: parseInt(price),
   });
-  const btcPrice = Money.fromDecimal(parseInt(price), Currencies.USD);
   const displayPrice = parseFloat(price).toFixed(2);
   const averageBytes = 140;
   const satDollarRatio = 5921;
