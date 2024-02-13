@@ -32,13 +32,11 @@ export default async function Confirmation() {
 
   return (
     <WrapperComponent>
-      {/*<h1>{JSON.stringify(data)}</h1>*/}
       <BitcoinChartComponent
         price={data.price.price}
         fees={data.fees.estimates["30"]}
         mempool={data.mempool.mempool}
       />
-      ;
     </WrapperComponent>
   );
 }
