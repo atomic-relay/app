@@ -1,7 +1,6 @@
 "use client";
 import { AreaChart, Card, Title, Text } from "@tremor/react";
 import { ReactElement } from "react";
-import { Money, Currencies } from "ts-money";
 
 const chartData = [
   {
@@ -46,11 +45,13 @@ interface BitcoinChartComponentProps {
   price: string;
   fees: any;
   mempool: any;
+  difficulty: any;
+  blockHeight: any;
 }
 export function BitcoinChartComponent(
   props: BitcoinChartComponentProps,
 ): ReactElement {
-  const { price, fees, mempool } = props;
+  const { price, fees, mempool, difficulty, blockHeight } = props;
   chartData.push({
     date: new Date().toLocaleString(),
     USD: parseInt(price),
@@ -66,11 +67,9 @@ export function BitcoinChartComponent(
       <Title>Bitcoin Live Data</Title>
       <main className="flex flex-row my-4 items-center justify-self-start p-24">
         <Card className="mx-2">
-          <Title>Live Fees</Title>
-          <Text>BTC: ${displayPrice}</Text>
-          <Text>Average Sats: {fees["sat_per_vbyte"]}</Text>
-          <Text>Average Fee: ${displaySatsDollars}</Text>
-          <Text>Mempool Volume: {mempool["56"]}</Text>
+          <Title>Hashrate</Title>
+          <Text>Difficulty Adjustment: </Text>
+          <Text>Remaining blocks: {blockHeight.remainingBlocks}</Text>
         </Card>
         <Card className="mx-2">
           <Title>Live Fees</Title>

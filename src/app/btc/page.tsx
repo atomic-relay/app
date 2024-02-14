@@ -1,5 +1,6 @@
 import { BitcoinChartComponent } from "@/components/pages/BitcoinChartComponent";
 import WrapperComponent from "@/components/WrapperComponent";
+import mempoolJS from "@mempool/mempool.js";
 
 async function getData() {
   const price = await fetch(
@@ -11,6 +12,18 @@ async function getData() {
       },
     },
   );
+  const {
+    bitcoin: { difficulty, blocks },
+  } = mempoolJS({
+    hostname: "mempool.space",
+  });
+
+  const difficultyAdjustment = await difficulty.getDifficultyAdjustment();
+  console.log(difficultyAdjustment);
+
+  const blockHeight = await blocks.getBlockHeight({ height: 0 });
+  console.log(blockHeight);
+
   const fees = await fetch("https://bitcoiner.live/api/fees/estimates/latest", {
     cache: "no-cache",
   });
@@ -21,7 +34,9 @@ async function getData() {
   const priceData = await price.json();
   const feesData = await fees.json();
   return {
+    difficulty: difficultyAdjustment,
     price: priceData,
+    blockHeight: blockHeight,
     fees: feesData,
     mempool: mempoolData,
   };
@@ -33,6 +48,8 @@ export default async function Confirmation() {
   return (
     <WrapperComponent>
       <BitcoinChartComponent
+        blockHeight={data.blockHeight}
+        difficulty={data.difficulty}
         price={data.price.price}
         fees={data.fees.estimates["30"]}
         mempool={data.mempool.mempool}
