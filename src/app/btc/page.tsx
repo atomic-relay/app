@@ -3,6 +3,13 @@ import WrapperComponent from "@/components/WrapperComponent";
 import mempoolJS from "@mempool/mempool.js";
 
 async function getData() {
+  const [fees, lightning, mempool, mining] = await Promise.all([
+    fetch("https://bitcoiner.live/api/fees/estimates/latest"),
+    fetch("https://mempool.space/api/v1/lightning/statistics/latest"),
+    fetch("https://bitcoiner.live/api/mempool/latest"),
+    fetch("https://mempool.space/api/v1/mining/pools/1w"),
+  ]);
+
   const price = await fetch(
     "https://api.api-ninjas.com/v1/cryptoprice?symbol=BTCUSDC",
     {
@@ -12,39 +19,39 @@ async function getData() {
       },
     },
   );
+
   const {
-    bitcoin: { difficulty, blocks },
+    bitcoin: { difficulty, blocks, transactions },
   } = mempoolJS({
     hostname: "mempool.space",
   });
-
   const difficultyAdjustment = await difficulty.getDifficultyAdjustment();
-  console.log(difficultyAdjustment);
-
   const blockHeight = await blocks.getBlocksTipHeight();
-  console.log(blockHeight);
-
-  const fees = await fetch("https://bitcoiner.live/api/fees/estimates/latest", {
-    cache: "no-cache",
-  });
-
-  const lightning = await fetch(
-    "https://mempool.space/api/v1/lightning/statistics/latest",
-  );
-  const mempool = await fetch(" https://bitcoiner.live/api/mempool/latest", {
-    cache: "no-cache",
-  });
   const mempoolData = await mempool.json();
+  const miningData = await mining.json();
   const priceData = await price.json();
   const feesData = await fees.json();
   const lightningData = await lightning.json();
+
+  // console.log("PRICE-----");
+  // console.log(priceData);
+  // console.log("FEES-----");
+  // console.log(feesData);
+  // console.log("MEMPOOL-----");
+  // console.log(mempoolData);
+  console.log("MINING-----");
+  console.log(miningData);
+  console.log("Lightning-----");
+  console.log(lightningData);
+
   return {
     difficulty: difficultyAdjustment,
     price: priceData,
     blockHeight: blockHeight,
     fees: feesData,
     mempool: mempoolData,
-    lightning: lightningData,
+    lightning: lightningData.latest,
+    mining: miningData,
   };
 }
 
@@ -54,6 +61,7 @@ export default async function Confirmation() {
   return (
     <WrapperComponent>
       <BitcoinChartComponent
+        mining={data.mining}
         lightning={data.lightning}
         blockHeight={data.blockHeight}
         difficulty={data.difficulty}
