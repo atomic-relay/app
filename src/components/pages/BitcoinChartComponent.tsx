@@ -64,15 +64,39 @@ export function BitcoinChartComponent(
   return (
     <main className="flex min-h-screen flex-col items-center justify-self-start p-24">
       <Title>Bitcoin Live Data</Title>
-      <Card className="my-4">
-        <Title>Live Fees</Title>
-        <Text>BTC: ${displayPrice}</Text>
-        <Text>Average Sats: {fees["sat_per_vbyte"]}</Text>
-        <Text>Average Fee: ${displaySatsDollars}</Text>
-        <Text>Mempool Volume: {mempool["56"]}</Text>
-      </Card>
+      <main className="flex flex-row my-4 items-center justify-self-start p-24">
+        <Card className="mx-2">
+          <Title>Live Fees</Title>
+          <Text>BTC: ${displayPrice}</Text>
+          <Text>Average Sats: {fees["sat_per_vbyte"]}</Text>
+          <Text>Average Fee: ${displaySatsDollars}</Text>
+          <Text>Mempool Volume: {mempool["56"]}</Text>
+        </Card>
+        <Card className="mx-2">
+          <Title>Live Fees</Title>
+          <Text>BTC: ${displayPrice}</Text>
+          <Text>Average Sats: {fees["sat_per_vbyte"]}</Text>
+          <Text>Average Fee: ${displaySatsDollars}</Text>
+          <Text>Mempool Volume: {mempool["56"]}</Text>
+        </Card>
+        <Card className="mx-2">
+          <Title>Live Fees</Title>
+          <Text>BTC: ${displayPrice}</Text>
+          <Text>Average Sats: {fees["sat_per_vbyte"]}</Text>
+          <Text>Average Fee: ${displaySatsDollars}</Text>
+          <Text>Mempool Volume: {mempool["56"]}</Text>
+        </Card>
+        <Card className="mx-2">
+          <Title>Live Fees</Title>
+          <Text>BTC: ${displayPrice}</Text>
+          <Text>Average Sats: {fees["sat_per_vbyte"]}</Text>
+          <Text>Average Fee: ${displaySatsDollars}</Text>
+          <Text>Mempool Volume: {mempool["56"]}</Text>
+        </Card>
+      </main>
+
       <Card>
-        <Title>Price Over Time</Title>
+        <Title>BTC Price</Title>
         <AreaChart
           className="h-72 mt-2"
           data={chartData}
