@@ -69,7 +69,7 @@ export function BitcoinChartComponent(
         <Card className="mx-2">
           <Title>Hashrate</Title>
           <Text>Difficulty Adjustment: </Text>
-          <Text>Remaining blocks: {blockHeight.remainingBlocks}</Text>
+          <Text>Remaining blocks: {blockHeight}</Text>
         </Card>
         <Card className="mx-2">
           <Title>Live Fees</Title>

@@ -21,7 +21,7 @@ async function getData() {
   const difficultyAdjustment = await difficulty.getDifficultyAdjustment();
   console.log(difficultyAdjustment);
 
-  const blockHeight = await blocks.getBlockHeight({ height: 0 });
+  const blockHeight = await blocks.getBlocksTipHeight();
   console.log(blockHeight);
 
   const fees = await fetch("https://bitcoiner.live/api/fees/estimates/latest", {
