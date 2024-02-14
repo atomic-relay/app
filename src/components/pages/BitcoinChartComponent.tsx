@@ -47,15 +47,24 @@ interface BitcoinChartComponentProps {
   mempool: any;
   difficulty: any;
   blockHeight: any;
+  lightning: any;
 }
 export function BitcoinChartComponent(
   props: BitcoinChartComponentProps,
 ): ReactElement {
-  const { price, fees, mempool, difficulty, blockHeight } = props;
+  const {
+    price,
+    fees,
+    mempool,
+    difficulty,
+    blockHeight,
+    lightning = {},
+  } = props;
   chartData.push({
     date: new Date().toLocaleString(),
     USD: parseInt(price),
   });
+
   const displayPrice = parseFloat(price).toFixed(2);
   const averageBytes = 140;
   const satDollarRatio = 5921;
@@ -65,27 +74,27 @@ export function BitcoinChartComponent(
   return (
     <main className="flex min-h-screen flex-col items-center justify-self-start p-24">
       <Title>Bitcoin Live Data</Title>
-      <main className="flex flex-row my-4 items-center justify-self-start p-24">
-        <Card className="mx-2">
+      <main className="flex flex-row my-2 items-center justify-self-start py-4">
+        <Card className="mx-1 h-40 py-4">
           <Title>Hashrate</Title>
           <Text>Difficulty Adjustment: </Text>
           <Text>Remaining blocks: {blockHeight}</Text>
         </Card>
-        <Card className="mx-2">
+        <Card className="mx-1 h-40 py-4">
+          <Title>Lightning</Title>
+          <Text>Nodes: {lightning["nodes"]}</Text>
+          <Text>Channels: {lightning["channels"]}</Text>
+          <Text>Capacity: {lightning["total_capacity"]}</Text>
+          <Text>Average Fees (sats): {lightning["avg_fee_rate"]}</Text>
+        </Card>
+        <Card className="mx-1 h-40 py-4">
           <Title>Live Fees</Title>
           <Text>BTC: ${displayPrice}</Text>
           <Text>Average Sats: {fees["sat_per_vbyte"]}</Text>
           <Text>Average Fee: ${displaySatsDollars}</Text>
           <Text>Mempool Volume: {mempool["56"]}</Text>
         </Card>
-        <Card className="mx-2">
-          <Title>Live Fees</Title>
-          <Text>BTC: ${displayPrice}</Text>
-          <Text>Average Sats: {fees["sat_per_vbyte"]}</Text>
-          <Text>Average Fee: ${displaySatsDollars}</Text>
-          <Text>Mempool Volume: {mempool["56"]}</Text>
-        </Card>
-        <Card className="mx-2">
+        <Card className="mx-1 h-40 py-4">
           <Title>Live Fees</Title>
           <Text>BTC: ${displayPrice}</Text>
           <Text>Average Sats: {fees["sat_per_vbyte"]}</Text>
@@ -93,7 +102,6 @@ export function BitcoinChartComponent(
           <Text>Mempool Volume: {mempool["56"]}</Text>
         </Card>
       </main>
-
       <Card>
         <Title>BTC Price</Title>
         <AreaChart

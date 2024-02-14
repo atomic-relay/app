@@ -27,18 +27,24 @@ async function getData() {
   const fees = await fetch("https://bitcoiner.live/api/fees/estimates/latest", {
     cache: "no-cache",
   });
+
+  const lightning = await fetch(
+    "https://mempool.space/api/v1/lightning/statistics/latest",
+  );
   const mempool = await fetch(" https://bitcoiner.live/api/mempool/latest", {
     cache: "no-cache",
   });
   const mempoolData = await mempool.json();
   const priceData = await price.json();
   const feesData = await fees.json();
+  const lightningData = await lightning.json();
   return {
     difficulty: difficultyAdjustment,
     price: priceData,
     blockHeight: blockHeight,
     fees: feesData,
     mempool: mempoolData,
+    lightning: lightningData,
   };
 }
 
@@ -48,6 +54,7 @@ export default async function Confirmation() {
   return (
     <WrapperComponent>
       <BitcoinChartComponent
+        lightning={data.lightning}
         blockHeight={data.blockHeight}
         difficulty={data.difficulty}
         price={data.price.price}
