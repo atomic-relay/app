@@ -106,25 +106,6 @@ export function BitcoinChartComponent(
   return (
     <main className="flex min-h-screen flex-col items-center justify-self-start p-24">
       <Title>Bitcoin Live Data</Title>
-      <Card className="mx-1 my-4 h-60 lg:rt-r-w-80%">
-        <Title>Address Lookup</Title>
-        <Text>We do not store any data.</Text>
-        <Text>
-          <TextInput
-            placeholder="Enter Address"
-            value={address}
-            onChange={(e) => {
-              setAddress(e.target.value);
-            }}
-          />
-          <button onClick={handleClick}>Like</button>
-          <Button onClick={(e) => handleClick(e.target)}>Enter</Button>
-        </Text>
-        {amount > 0 && <Text>{amount}</Text>}
-        <Text>
-          <a href={`https://mempool.space/api/address/${address}`}>{address}</a>
-        </Text>
-      </Card>
       <main className="flex flex-row my-2 items-center justify-self-start py-4 lg:rt-r-w-80% md:rt-r-w-100%">
         <Card className="mx-1 h-40 w-80 py-4">
           <Title>Hashrate</Title>
@@ -167,6 +148,25 @@ export function BitcoinChartComponent(
           <Text>Mempool Volume: {mempool["56"]}</Text>
         </Card>
       </main>
+      <Card className="mx-1 my-4 h-60 lg:rt-r-w-60%">
+        <Title>Address Lookup</Title>
+        <Text>We do not store any data.</Text>
+        <Text>
+          <TextInput
+            placeholder="Enter Address"
+            value={address}
+            onChange={(e) => {
+              setAddress(e.target.value);
+            }}
+          />
+          <button onClick={handleClick}>Like</button>
+          <Button onClick={(e) => handleClick(e.target)}>Enter</Button>
+        </Text>
+        {amount > 0 && <Text>{amount}</Text>}
+        <Text>
+          <a href={`https://mempool.space/api/address/${address}`}>{address}</a>
+        </Text>
+      </Card>
       <Card>
         <Title>BTC Price</Title>
         <AreaChart
