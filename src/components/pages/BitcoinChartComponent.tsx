@@ -50,6 +50,7 @@ interface BitcoinChartComponentProps {
   blockHeight: any;
   lightning: any;
   mining: any;
+  tweet: any;
 }
 export function BitcoinChartComponent(
   props: BitcoinChartComponentProps,
@@ -70,15 +71,16 @@ export function BitcoinChartComponent(
   const [amount, setAmount] = useState<number>(0);
 
   useEffect(() => {
-    if (address && amount === 0) {
+    if (address && amount <= 0) {
       fetchData();
     }
   }, [address, amount]);
   const fetchData = async () => {
-    console.log(address);
+    console.log("fetch");
     debugger;
     const req = await fetch("https://mempool.space/api/address/" + address);
     const data = await req.json();
+    console.log(data.chain_stats.funded_txo_sum);
     const amount = parseInt(data.chain_stats.funded_txo_sum) / 1e18;
     return setAmount(amount);
   };

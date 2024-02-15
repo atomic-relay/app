@@ -39,6 +39,7 @@
     "@types/sjcl": "^1.0.34",
     "@upstash/redis": "^1.28.2",
     "axios": "^1.6.3",
+    "cheerio": "^1.0.0-rc.12",
     "class-variance-authority": "^0.7.0",
     "crypto": "^1.0.1",
     "dotenv": "^16.3.1",
