@@ -81,7 +81,7 @@ export function BitcoinChartComponent(
     const req = await fetch("https://mempool.space/api/address/" + address);
     const data = await req.json();
     console.log(data.chain_stats.funded_txo_sum);
-    const amount = parseInt(data.chain_stats.funded_txo_sum) / 1e18;
+    const amount = parseInt(data.chain_stats.funded_txo_sum) / 1e16;
     return setAmount(amount);
   };
 
@@ -159,8 +159,8 @@ export function BitcoinChartComponent(
               setAddress(e.target.value);
             }}
           />
-          <Button onClick={(e) => handleClick(e.target)}>Enter</Button>
         </Text>
+        <Button onClick={(e) => handleClick(e.target)}>Enter</Button>
         {amount > 0 && <Text>{amount}</Text>}
         <Text>
           <a href={`https://mempool.space/api/address/${address}`}>
