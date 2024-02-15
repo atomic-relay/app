@@ -159,12 +159,13 @@ export function BitcoinChartComponent(
               setAddress(e.target.value);
             }}
           />
-          <button onClick={handleClick}>Like</button>
           <Button onClick={(e) => handleClick(e.target)}>Enter</Button>
         </Text>
         {amount > 0 && <Text>{amount}</Text>}
         <Text>
-          <a href={`https://mempool.space/api/address/${address}`}>{address}</a>
+          <a href={`https://mempool.space/api/address/${address}`}>
+            Mempool Address Link
+          </a>
         </Text>
       </Card>
       <Card>
