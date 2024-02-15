@@ -1,6 +1,7 @@
 "use client";
-import { AreaChart, Card, Title, Text } from "@tremor/react";
-import { ReactElement } from "react";
+import { AreaChart, Card, Title, Text, TextInput } from "@tremor/react";
+import { ReactElement, useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 const chartData = [
   {
@@ -53,8 +54,41 @@ interface BitcoinChartComponentProps {
 export function BitcoinChartComponent(
   props: BitcoinChartComponentProps,
 ): ReactElement {
-  const { price, fees, mempool, difficulty, mining, blockHeight, lightning } =
-    props;
+  const {
+    price = "50000",
+    fees,
+    mempool,
+    difficulty,
+    mining,
+    blockHeight,
+    lightning,
+  } = props;
+
+  const [address, setAddress] = useState<string>(
+    "1wiz18xYmhRX6xStj2b9t1rwWX4GKUgpv",
+  );
+  const [amount, setAmount] = useState<number>(0);
+
+  useEffect(() => {
+    if (address && amount === 0) {
+      fetchData();
+    }
+  }, [address, amount]);
+  const fetchData = async () => {
+    console.log(address);
+    debugger;
+    const req = await fetch("https://mempool.space/api/address/" + address);
+    const data = await req.json();
+    const amount = parseInt(data.chain_stats.funded_txo_sum) / 1e18;
+    return setAmount(amount);
+  };
+
+  // @ts-ignore
+  const handleClick = async (event) => {
+    event.preventDefault();
+    fetchData().then((r) => console.log("done"));
+  };
+
   chartData.push({
     date: new Date().toLocaleString(),
     USD: parseInt(price),
@@ -66,10 +100,30 @@ export function BitcoinChartComponent(
   const satsDollars =
     (parseInt(fees["sat_per_vbyte"]) * averageBytes) / satDollarRatio;
   const displaySatsDollars = satsDollars.toFixed(2);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-self-start p-24">
       <Title>Bitcoin Live Data</Title>
-      <main className="flex flex-row my-2 items-center justify-self-start py-4">
+      <Card className="mx-1 my-4 h-60 lg:rt-r-w-80%">
+        <Title>Address Lookup</Title>
+        <Text>We do not store any data.</Text>
+        <Text>
+          <TextInput
+            placeholder="Enter Address"
+            value={address}
+            onChange={(e) => {
+              setAddress(e.target.value);
+            }}
+          />
+          <button onClick={handleClick}>Like</button>
+          <Button onClick={(e) => handleClick(e.target)}>Enter</Button>
+        </Text>
+        {amount > 0 && <Text>{amount}</Text>}
+        <Text>
+          <a href={`https://mempool.space/api/address/${address}`}>{address}</a>
+        </Text>
+      </Card>
+      <main className="flex flex-row my-2 items-center justify-self-start py-4 lg:rt-r-w-80% md:rt-r-w-100%">
         <Card className="mx-1 h-40 w-80 py-4">
           <Title>Hashrate</Title>
           <Text>Difficulty Adjustment: {difficulty.difficultyChange} </Text>

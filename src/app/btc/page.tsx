@@ -10,15 +10,13 @@ async function getData() {
     fetch("https://mempool.space/api/v1/mining/pools/1w"),
   ]);
 
-  const price = await fetch(
-    "https://api.api-ninjas.com/v1/cryptoprice?symbol=BTCUSDC",
-    {
-      cache: "no-cache",
-      headers: {
-        "x-api-key": `${process.env.NEXT_API_NINJA_KEY}`,
-      },
+  const price = {};
+
+  await fetch("https://api.api-ninjas.com/v1/cryptoprice?symbol=BTCUSDC", {
+    headers: {
+      "x-api-key": `${process.env.NEXT_API_NINJA_KEY}`,
     },
-  );
+  });
 
   const {
     bitcoin: { difficulty, blocks, transactions },
@@ -39,8 +37,8 @@ async function getData() {
   // console.log(feesData);
   // console.log("MEMPOOL-----");
   // console.log(mempoolData);
-  console.log("MINING-----");
-  console.log(miningData);
+  // console.log("MINING-----");
+  // console.log(miningData);
   console.log("Lightning-----");
   console.log(lightningData);
 
