@@ -79,14 +79,16 @@ export function BitcoinChartComponent(
   }, [address]);
 
   const fetchData = async () => {
-    debugger;
     const req = await fetch("https://mempool.space/api/address/" + address);
     const data = await req.json();
     const chain_stats = data.chain_stats;
     const funds_left =
       parseInt(chain_stats.funded_txo_sum) -
       parseInt(chain_stats.spend_txo_sum);
+    console.log(funds_left);
+    console.log(chain_stats);
     const amount = convertSatsToBTC(funds_left).toFixed(4);
+    console.log(amount);
     return setAmount(parseInt(amount));
   };
 
@@ -172,7 +174,7 @@ export function BitcoinChartComponent(
           />
         </Text>
         <Button onClick={(e) => handleClick(e.target)}>Enter</Button>
-        {amount > 0 && <Text>{amount}</Text>}
+        {amount && <Text>{amount}</Text>}
         <Text>
           <a href={`https://mempool.space/api/address/${address}`}>
             Mempool Address Link
