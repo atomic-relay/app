@@ -65,33 +65,43 @@ export function BitcoinChartComponent(
     lightning,
   } = props;
 
-  const [address, setAddress] = useState<string>(
-    "1wiz18xYmhRX6xStj2b9t1rwWX4GKUgpv",
-  );
+  const SATS_TO_BITCOIN = 1e18;
+  const averageBytes = 140;
+  const satDollarRatio = 5921;
+
+  const [address, setAddress] = useState<string>("");
   const [amount, setAmount] = useState<number>(0);
 
   useEffect(() => {
-    if (address && amount <= 0) {
+    if (address) {
       fetchData();
     }
-  }, [address, amount]);
+  }, [address]);
+
   const fetchData = async () => {
-    console.log("fetch");
     debugger;
     const req = await fetch("https://mempool.space/api/address/" + address);
     const data = await req.json();
     const chain_stats = data.chain_stats;
     const funds_left =
       parseInt(chain_stats.funded_txo_sum) -
-      parseInt(chain_stats.spend_txo_sum) / 1e18;
-    const amount = parseInt(funds_left.toFixed(4));
-    return setAmount(amount);
+      parseInt(chain_stats.spend_txo_sum);
+    const amount = convertSatsToBTC(funds_left).toFixed(4);
+    return setAmount(parseInt(amount));
+  };
+
+  const convertSatsToBTC = (sats: number) => {
+    return sats / SATS_TO_BITCOIN;
   };
 
   // @ts-ignore
   const handleClick = async (event) => {
     event.preventDefault();
-    fetchData().then((r) => console.log("done"));
+    fetchData();
+  };
+
+  const displayValue = (value: string, fractionDigits: number = 2) => {
+    return parseFloat(value).toFixed(fractionDigits);
   };
 
   chartData.push({
@@ -99,12 +109,10 @@ export function BitcoinChartComponent(
     USD: parseInt(price),
   });
 
-  const displayPrice = parseFloat(price).toFixed(2);
-  const averageBytes = 140;
-  const satDollarRatio = 5921;
-  const satsDollars =
-    (parseInt(fees["sat_per_vbyte"]) * averageBytes) / satDollarRatio;
-  const displaySatsDollars = satsDollars.toFixed(2);
+  const displaySatsDollars = (
+    (parseInt(fees["sat_per_vbyte"]) * averageBytes) /
+    satDollarRatio
+  ).toFixed(2);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-self-start p-24">
@@ -140,12 +148,12 @@ export function BitcoinChartComponent(
           </Text>
           <Text>
             Estimated HashRate:{" "}
-            {(mining.lastEstimatedHashrate / 1e18).toFixed(2)} EH/s
+            {convertSatsToBTC(mining.lastEstimatedHashrate).toFixed(2)} EH/s
           </Text>
         </Card>
         <Card className="mx-1 h-40 w-80 py-4">
           <Title>Live Fees</Title>
-          <Text>BTC: ${displayPrice}</Text>
+          <Text>BTC: ${displayValue(price, 2)}</Text>
           <Text>Average Sats: {fees["sat_per_vbyte"]}</Text>
           <Text>Average Fee: ${displaySatsDollars}</Text>
           <Text>Mempool Volume: {mempool["56"]}</Text>
