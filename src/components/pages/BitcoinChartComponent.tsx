@@ -89,12 +89,10 @@ export function BitcoinChartComponent(
     const req = await fetch("https://mempool.space/api/address/" + address);
     const data = await req.json();
     const chain_stats = data.chain_stats;
-    console.log(chain_stats.funded_txo_sum - chain_stats.spent_txo_sum);
-    const funds_left = convertSatsToBTC(
-      chain_stats.funded_txo_sum - chain_stats.spent_txo_sum,
-    );
+    const funds_left = chain_stats.funded_txo_sum - chain_stats.spent_txo_sum;
     console.log(funds_left);
-    return setAmount(funds_left);
+    console.log(funds_left / 1e9);
+    return setAmount(funds_left / 1e9);
   };
 
   const convertSatsToBTC = (sats: number) => {
