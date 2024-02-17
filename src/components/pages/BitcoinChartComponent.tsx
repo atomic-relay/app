@@ -94,9 +94,7 @@ export function BitcoinChartComponent(
       chain_stats.funded_txo_sum - chain_stats.spent_txo_sum,
     );
     console.log(funds_left);
-    const amount = funds_left.toFixed(4);
-    console.log(amount);
-    return setAmount(parseInt(amount));
+    return setAmount(funds_left);
   };
 
   const convertSatsToBTC = (sats: number) => {
