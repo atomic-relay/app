@@ -82,13 +82,8 @@ export function BitcoinChartComponent(
     const req = await fetch("https://mempool.space/api/address/" + address);
     const data = await req.json();
     const chain_stats = data.chain_stats;
-    const funds_left =
-      parseInt(chain_stats.funded_txo_sum) -
-      parseInt(chain_stats.spend_txo_sum);
-    console.log(funds_left);
-    console.log(chain_stats);
+    const funds_left = chain_stats.funded_txo_sum - chain_stats.spend_txo_sum;
     const amount = convertSatsToBTC(funds_left).toFixed(4);
-    console.log(amount);
     return setAmount(parseInt(amount));
   };
 
