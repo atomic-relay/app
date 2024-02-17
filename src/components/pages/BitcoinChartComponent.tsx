@@ -1,5 +1,12 @@
 "use client";
-import { AreaChart, Card, Title, Text, TextInput } from "@tremor/react";
+import {
+  AreaChart,
+  Card,
+  Title,
+  Text,
+  TextInput,
+  Divider,
+} from "@tremor/react";
 import { ReactElement, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
@@ -83,7 +90,9 @@ export function BitcoinChartComponent(
     const data = await req.json();
     const chain_stats = data.chain_stats;
     const funds_left = chain_stats.funded_txo_sum - chain_stats.spend_txo_sum;
+    console.log(funds_left);
     const amount = convertSatsToBTC(funds_left).toFixed(4);
+    console.log(amount);
     return setAmount(parseInt(amount));
   };
 
@@ -169,6 +178,7 @@ export function BitcoinChartComponent(
           />
         </Text>
         <Button onClick={(e) => handleClick(e.target)}>Enter</Button>
+        <Divider />
         {amount && <Text>{amount}</Text>}
         <Text>
           <a href={`https://mempool.space/api/address/${address}`}>
