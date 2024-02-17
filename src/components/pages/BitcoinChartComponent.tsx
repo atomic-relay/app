@@ -91,8 +91,8 @@ export function BitcoinChartComponent(
     const chain_stats = data.chain_stats;
     const funds_left = chain_stats.funded_txo_sum - chain_stats.spent_txo_sum;
     console.log(funds_left);
-    console.log(funds_left / 1e9);
-    return setAmount(funds_left / 1e9);
+    console.log(funds_left / 1e8);
+    return setAmount(funds_left / 1e8);
   };
 
   const convertSatsToBTC = (sats: number) => {
