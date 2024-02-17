@@ -46,13 +46,9 @@ async function getData() {
 
   console.log("TWEET-----");
   console.log(tweetFees);
-  // console.log("PRICE-----");
   // console.log(priceData);
-  // console.log("FEES-----");
   // console.log(feesData);
-  // console.log("MEMPOOL-----");
   // console.log(mempoolData);
-  // console.log("MINING-----");
   // console.log(miningData);
   console.log("Lightning-----");
   console.log(lightningData);
