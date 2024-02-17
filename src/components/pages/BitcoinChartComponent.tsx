@@ -90,9 +90,9 @@ export function BitcoinChartComponent(
     const data = await req.json();
     const chain_stats = data.chain_stats;
     console.log(chain_stats.funded_txo_sum - chain_stats.spent_txo_sum);
-    const funds_left =
-      convertSatsToBTC(chain_stats.funded_txo_sum) -
-      convertSatsToBTC(chain_stats.spent_txo_sum);
+    const funds_left = convertSatsToBTC(
+      chain_stats.funded_txo_sum - chain_stats.spent_txo_sum,
+    );
     console.log(funds_left);
     const amount = funds_left.toFixed(4);
     console.log(amount);
