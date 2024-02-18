@@ -74,13 +74,14 @@ export function BitcoinChartComponent(
 
   const SATS_TO_BITCOIN = 1e8;
   const averageBytes = 140;
-  const satDollarRatio = 5921;
+  const PRICE = parseInt(price);
+  const satRatio = PRICE / SATS_TO_BITCOIN;
 
   const [address, setAddress] = useState<string>("");
   const [amount, setAmount] = useState<number>(0);
   const [dollarAmount, setDollarAmount] = useState<number>();
   useEffect(() => {
-    if (address) {
+    if (address.match(/^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}$/)) {
       fetchData();
     }
   }, [address]);
@@ -115,13 +116,13 @@ export function BitcoinChartComponent(
   };
 
   chartData.push({
-    date: new Date().toLocaleString(),
-    USD: parseInt(price),
+    date: new Date("MM YYYY").toLocaleString(),
+    USD: PRICE,
   });
 
   const displaySatsDollars = (
     (parseInt(fees["sat_per_vbyte"]) * averageBytes) /
-    satDollarRatio
+    satRatio
   ).toFixed(2);
 
   return (
@@ -166,11 +167,11 @@ export function BitcoinChartComponent(
           <Text>BTC: ${displayValue(price, 2)}</Text>
           <Text>Average Sats: {fees["sat_per_vbyte"]}</Text>
           <Text>Average Fee: ${displaySatsDollars}</Text>
-          <Text>Mempool Volume: {mempool["56"]}</Text>
+          <Text>Volume (56) : {mempool["56"]}</Text>
         </Card>
       </main>
       <Card className="mx-1 my-4 h-60 lg:rt-r-w-60%">
-        <Title>Address Lookup</Title>
+        <Title>Balance Lookup</Title>
         <Text>We do not store any data.</Text>
         <Text>
           <TextInput
