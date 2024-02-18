@@ -72,13 +72,13 @@ export function BitcoinChartComponent(
     lightning,
   } = props;
 
-  const SATS_TO_BITCOIN = 1e18;
+  const SATS_TO_BITCOIN = 1e8;
   const averageBytes = 140;
   const satDollarRatio = 5921;
 
   const [address, setAddress] = useState<string>("");
   const [amount, setAmount] = useState<number>(0);
-
+  const [dollarAmount, setDollarAmount] = useState<number>();
   useEffect(() => {
     if (address) {
       fetchData();
@@ -90,9 +90,14 @@ export function BitcoinChartComponent(
     const data = await req.json();
     const chain_stats = data.chain_stats;
     const funds_left = chain_stats.funded_txo_sum - chain_stats.spent_txo_sum;
-    console.log(funds_left);
-    console.log(funds_left / 1e8);
+    const funds_in_btc = funds_left / 1e8;
+    converBtcToUSD(funds_in_btc);
     return setAmount(funds_left / 1e8);
+  };
+
+  const converBtcToUSD = (btc: number) => {
+    const dollarPrice = btc * parseInt(price);
+    setDollarAmount(dollarPrice);
   };
 
   const convertSatsToBTC = (sats: number) => {
@@ -177,13 +182,11 @@ export function BitcoinChartComponent(
           />
         </Text>
         <Button onClick={(e) => handleClick(e.target)}>Enter</Button>
-        <Divider />
         {amount && <Text>{amount}</Text>}
-        <Text>
-          <a href={`https://mempool.space/api/address/${address}`}>
-            Mempool Address Link
-          </a>
-        </Text>
+        {dollarAmount && <Text>${dollarAmount}</Text>}
+        <a href={`https://mempool.space/api/address/${address}`}>
+          <Text>Mempool Address Link</Text>
+        </a>
       </Card>
       <Card>
         <Title>BTC Price</Title>
