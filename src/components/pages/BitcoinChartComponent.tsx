@@ -182,10 +182,10 @@ export function BitcoinChartComponent(
           />
         </Text>
         <Button onClick={(e) => handleClick(e.target)}>Enter</Button>
-        {amount && <Text>{amount}</Text>}
-        {dollarAmount && <Text>${dollarAmount}</Text>}
+        {amount && <Text>BTC - {amount}</Text>}
+        {dollarAmount && <Text>USD - ${dollarAmount}</Text>}
         <a href={`https://mempool.space/api/address/${address}`}>
-          <Text>Mempool Address Link</Text>
+          <Text>Address</Text>
         </a>
       </Card>
       <Card>
