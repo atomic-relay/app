@@ -1,25 +1,13 @@
-import { withPageAuthRequired, getSession } from "@auth0/nextjs-auth0";
-
-export const getServerSideProps = withPageAuthRequired();
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 
 const Dashboard = async () => {
-  const { user } = (await getSession().user) || null;
   return (
     <div>
       <main>
-        {user && (
-          <div>
-            <div>
-              {user.email}{" "}
-              {!user.email_verified && (
-                <span>Your account is not verified</span>
-              )}
-            </div>
-          </div>
-        )}
+        <div>Logged In</div>
       </main>
     </div>
   );
 };
 
-export default Dashboard;
+export default withPageAuthRequired(Dashboard);

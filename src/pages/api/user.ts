@@ -1,13 +1,26 @@
-import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
-import { NextRequest, NextResponse } from "next/server";
-import { Session } from "@auth0/nextjs-auth0/src/session";
+import { getAccessToken, withApiAuthRequired } from "@auth0/nextjs-auth0";
+import { NextResponse } from "next/server";
 
-// @ts-ignore
-export default withApiAuthRequired(
-  async (req: NextRequest, res: NextResponse): Promise<any> => {
-    const session: Session | null | undefined = await getSession(req, res);
-    const user = session?.user || null;
-    // the getSession function is used to get the session object that's created in the app. Which is where auth data is kepy
-    await res.json({ user });
-  },
-);
+export const GET = withApiAuthRequired(async function shows(req) {
+  try {
+    const res = new NextResponse();
+    const { accessToken } = await getAccessToken(req, res, {
+      scopes: ["read:shows"],
+    });
+    const apiPort = process.env.API_PORT || 3001;
+    const response = await fetch(`http://localhost:${apiPort}/api/shows`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    const shows = await response.json();
+
+    return NextResponse.json(shows, res);
+  } catch (error) {
+    // @ts-ignore
+    return NextResponse.json(
+      { error: error.message },
+      { status: error.status || 500 },
+    );
+  }
+});
