@@ -5,7 +5,6 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
-import { handleAuth } from "@auth0/nextjs-auth0";
 
 // @ts-ignore
 function classNames(...classes) {
