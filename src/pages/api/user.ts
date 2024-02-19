@@ -17,10 +17,6 @@ export const GET = withApiAuthRequired(async function shows(req) {
 
     return NextResponse.json(shows, res);
   } catch (error) {
-    // @ts-ignore
-    return NextResponse.json(
-      { error: error.message },
-      { status: error.status || 500 },
-    );
+    return NextResponse.json({ error: "ERRROR" }, { status: 500 });
   }
 });
