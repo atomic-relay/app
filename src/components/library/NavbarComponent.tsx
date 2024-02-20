@@ -14,9 +14,14 @@ function classNames(...classes) {
 export default function NavbarComponent() {
   const pathname = usePathname();
   const navigation = [
-    { name: "Dashboard", href: "/", current: pathname === "/" },
-    { name: "Payments", href: "payments", current: pathname === "/payments" },
-    { name: "Contacts", href: "contacts", current: pathname === "/contacts" },
+    { name: "Home", href: "/", current: pathname === "/" },
+    {
+      name: "Dashboard",
+      href: "dashboard",
+      current: pathname === "/dashboard",
+    },
+    // { name: "Payments", href: "payments", current: pathname === "/payments" },
+    // { name: "Contacts", href: "contacts", current: pathname === "/contacts" },
     { name: "Bitcoin", href: "btc", current: pathname === "/btc" },
     { name: "Wallet", href: "wallet", current: pathname === "/wallet" },
   ];
