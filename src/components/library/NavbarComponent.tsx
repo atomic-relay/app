@@ -20,10 +20,11 @@ export default function NavbarComponent() {
       href: "dashboard",
       current: pathname === "/dashboard",
     },
-    // { name: "Payments", href: "payments", current: pathname === "/payments" },
-    // { name: "Contacts", href: "contacts", current: pathname === "/contacts" },
+    { name: "Payments", href: "payments", current: pathname === "/payments" },
+    { name: "Contacts", href: "contacts", current: pathname === "/contacts" },
     { name: "Bitcoin", href: "btc", current: pathname === "/btc" },
     { name: "Wallet", href: "wallet", current: pathname === "/wallet" },
+    { name: "Login", href: "login", current: pathname === "/login" },
   ];
 
   return (
@@ -48,7 +49,7 @@ export default function NavbarComponent() {
                 <div className="flex flex-shrink-0 items-center">
                   <img
                     className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                    src="https://avatars.githubusercontent.com/u/139788058?s=200&v=4"
                     alt="Your Company"
                   />
                 </div>
