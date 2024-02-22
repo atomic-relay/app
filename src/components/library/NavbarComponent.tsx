@@ -15,16 +15,17 @@ export default function NavbarComponent() {
   const pathname = usePathname();
   const navigation = [
     { name: "Home", href: "/", current: pathname === "/" },
-    {
-      name: "Dashboard",
-      href: "dashboard",
-      current: pathname === "/dashboard",
-    },
     // { name: "Payments", href: "payments", current: pathname === "/payments" },
     // { name: "Contacts", href: "contacts", current: pathname === "/contacts" },
     { name: "Bitcoin", href: "btc", current: pathname === "/btc" },
     { name: "Wallet", href: "wallet", current: pathname === "/wallet" },
     { name: "Login", href: "login", current: pathname === "/login" },
+    // TODO dashboard should be protected
+    {
+      name: "Dashboard",
+      href: "dashboard",
+      current: pathname === "/dashboard",
+    },
   ];
 
   return (

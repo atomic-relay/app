@@ -9,6 +9,7 @@ import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 
 export default authMiddleware({
   publicRoutes: ["/", "/confirmation", "/payments", "/contacts"],
+  apiRoutes: ["/api/(.*)", "/trpc/(.*)"],
 });
 
 export const config = {

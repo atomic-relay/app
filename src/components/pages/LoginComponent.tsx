@@ -1,5 +1,5 @@
 "use client";
-import { SignedIn, SignedOut, SignIn, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 export default function LoginComponent() {
   return (
     <div>
@@ -7,7 +7,7 @@ export default function LoginComponent() {
         <UserButton afterSignOutUrl="/login" />
       </SignedIn>
       <SignedOut>
-        <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" />
+        <SignInButton />
       </SignedOut>
     </div>
   );
