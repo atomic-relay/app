@@ -1,6 +1,9 @@
 import { auth, clerkClient } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import UserDetails from "./UserDetails";
+import SessionDetails from "./SessionDetails";
+import OrgDetails from "./OrgDetails";
 
 const Dashboard = async () => {
   const { userId } = auth();
@@ -24,7 +27,7 @@ const Dashboard = async () => {
             <OrgDetails />
           </div>
           <h2 className="mt-16 mb-4 text-3xl font-semibold text-black">
-            What's next?
+            Whats next?
           </h2>
           Read the{" "}
           <Link
