@@ -8,22 +8,29 @@ import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 // See https://clerk.com/docs/references/nextjs/auth-middleware for more information about configuring your Middleware
 
 export default authMiddleware({
-  publicRoutes: ["/", "/confirmation", "/payments", "/contacts", "/dashboard"],
+  beforeAuth: async (req) => {
+    const res = NextResponse.next();
+
+    // Create a Supabase client configured to use cookies
+    const supabase = createMiddlewareClient({ req, res });
+
+    // Refresh session if expired - required for Server Components
+    await supabase.auth.getSession();
+
+    return res;
+  },
+  publicRoutes: [
+    "/",
+    "/confirmation",
+    "/payments",
+    "/contacts",
+    "/dashboard",
+    "/signup",
+    "/verification",
+  ],
   apiRoutes: ["/api/(.*)", "/trpc/(.*)"],
 });
 
 export const config = {
   matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };
-
-export async function middleware(req: NextRequest) {
-  const res = NextResponse.next();
-
-  // Create a Supabase client configured to use cookies
-  const supabase = createMiddlewareClient({ req, res });
-
-  // Refresh session if expired - required for Server Components
-  await supabase.auth.getSession();
-
-  return res;
-}

@@ -19,7 +19,6 @@ export default function NavbarComponent() {
     // { name: "Contacts", href: "contacts", current: pathname === "/contacts" },
     { name: "Bitcoin", href: "btc", current: pathname === "/btc" },
     { name: "Wallet", href: "wallet", current: pathname === "/wallet" },
-    { name: "Login", href: "login", current: pathname === "/login" },
     // TODO dashboard should be protected
     {
       name: "Dashboard",

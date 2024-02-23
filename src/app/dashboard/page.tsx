@@ -1,16 +1,15 @@
-import { auth, clerkClient } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
+import { currentUser } from "@clerk/nextjs";
 import UserDetails from "./components/UserDetails";
 import SessionDetails from "./components/SessionDetails";
 import OrgDetails from "./components/OrgDetails";
+import { redirect } from "next/navigation";
 
 const Dashboard = async () => {
-  const { userId } = auth();
-  if (!userId) {
-    redirect("/");
-  }
+  const user = await currentUser();
 
-  const user = await clerkClient.users.getUser(userId);
+  if (!user) {
+    redirect("/login");
+  }
 
   return (
     <div className="px-8 py-12 sm:py-16 md:px-20">

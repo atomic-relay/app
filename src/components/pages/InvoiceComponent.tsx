@@ -16,9 +16,8 @@ import { CurrencyDollarIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import { ReactElement, useState, useEffect } from "react";
 import { Money } from "ts-money";
 import { Select, SelectItem } from "@tremor/react";
-import useSWRMutation from "swr/mutation";
 import { supabase } from "@/lib/supabaseClient";
-import { toast, ToastContainer } from "react-toastify";
+// import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 
@@ -113,9 +112,9 @@ export function InvoiceComponent(props: ClientProps): ReactElement {
   }, [dollar]);
 
   useEffect(() => {
-    toast.success("Success Notification !", {
-      position: "top-right",
-    });
+    // toast.success("Success Notification !", {
+    //   position: "top-right",
+    // });
   }, []);
 
   const query = `usd=${dollar}&mxn=${mxn}`;
@@ -123,7 +122,7 @@ export function InvoiceComponent(props: ClientProps): ReactElement {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-self-start p-24">
-      <ToastContainer />
+      {/*<ToastContainer />*/}
       <Card className="max-w-sm my-4 mx-auto">
         <Flex className="mt-2">
           <Text className="text-base">USD (USDT/USDC)</Text>
