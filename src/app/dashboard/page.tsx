@@ -1,13 +1,11 @@
 import { auth, clerkClient } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import Link from "next/link";
-import UserDetails from "./UserDetails";
-import SessionDetails from "./SessionDetails";
-import OrgDetails from "./OrgDetails";
+import UserDetails from "./components/UserDetails";
+import SessionDetails from "./components/SessionDetails";
+import OrgDetails from "./components/OrgDetails";
 
 const Dashboard = async () => {
   const { userId } = auth();
-
   if (!userId) {
     redirect("/");
   }
@@ -26,17 +24,6 @@ const Dashboard = async () => {
             <SessionDetails />
             <OrgDetails />
           </div>
-          <h2 className="mt-16 mb-4 text-3xl font-semibold text-black">
-            Whats next?
-          </h2>
-          Read the{" "}
-          <Link
-            className="font-medium text-primary-600 hover:underline"
-            href="https://clerk.com/docs?utm_source=vercel-template&utm_medium=template_repos&utm_campaign=nextjs_template"
-            target="_blank"
-          >
-            Clerk Docs -&gt;
-          </Link>
         </>
       )}
     </div>
