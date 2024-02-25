@@ -21,20 +21,10 @@ export default function SignUp() {
     setExpired(false);
     setVerified(false);
     if (signUp) {
-      // Start the sign up flow, by collecting
-      // the user's email address.
       await signUp.create({ emailAddress });
-
-      // Start the magic link flow.
-      // Pass your app URL that users will be navigated
-      // when they click the magic link from their
-      // email inbox.
-      // su will hold the updated sign up object.
       const su = await startMagicLinkFlow({
         redirectUrl: "http://localhost:3000/verification",
       });
-
-      // Check the verification result.
       const verification = su.verifications.emailAddress;
       if (verification.verifiedFromTheSameClient()) {
         setVerified(true);
@@ -42,10 +32,7 @@ export default function SignUp() {
       } else if (verification.status === "expired") {
         setExpired(true);
       }
-
       if (su.status === "complete") {
-        // Sign up is complete, we have a session.
-        // Navigate to the after sign up URL.
         setActive({ session: su.createdSessionId || "" });
         router.push("/after-sign-up");
         return;
@@ -56,7 +43,6 @@ export default function SignUp() {
   if (expired) {
     return <div>Magic link has expired</div>;
   }
-
   if (verified) {
     return <div>Signed in on other tab</div>;
   }

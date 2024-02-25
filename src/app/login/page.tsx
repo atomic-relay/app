@@ -1,7 +1,7 @@
 import { Card } from "@tremor/react";
 import WrapperComponent from "@/components/WrapperComponent";
 import LoginComponent from "@/components/pages/LoginComponent";
-export default function Login() {
+function Login() {
   return (
     <WrapperComponent>
       <Card className="max-w-md my-40 mx-auto">
@@ -11,3 +11,5 @@ export default function Login() {
     </WrapperComponent>
   );
 }
+
+export default Login;

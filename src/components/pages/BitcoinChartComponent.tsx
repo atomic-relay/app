@@ -57,7 +57,7 @@ interface BitcoinChartComponentProps {
   blockHeight: any;
   lightning: any;
   mining: any;
-  tweet: any;
+  // tweet: any;
 }
 export function BitcoinChartComponent(
   props: BitcoinChartComponentProps,

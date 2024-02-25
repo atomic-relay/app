@@ -11,7 +11,6 @@ declare global {
     Prism: any;
   }
 }
-
 export default function UserDetails() {
   const { isLoaded, user } = useUser();
   const [jsonOutput, setJsonOutput] = useState(false);

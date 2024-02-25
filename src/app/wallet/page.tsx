@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import DevOverlay from "@/components/DevOverlay";
-import { useEnvironmentSettings } from "@/providers/EnvironmentSettingsProvider";
 import Configure from "@/components/Configure";
 import Playground from "@/components/Playground";
 import { SharedStateProvider } from "@/providers/SharedStateProvider";
@@ -15,7 +14,6 @@ import { resetSecrets, truncateString } from "@/lib/utils";
 import WrapperComponent from "@/components/WrapperComponent";
 
 const WalletPage: NextPage = () => {
-  const { isDevModeOn } = useEnvironmentSettings();
   const [showConfigure, setShowConfigure] = useState<boolean>(false);
   const [secrets, setSecrets] = useState<Secrets | undefined>();
   const [isLoading, setIsLoading] = useState(false);

@@ -33,11 +33,9 @@ export default function Verification() {
   if (verificationStatus === "loading") {
     return <div>Loading...</div>;
   }
-
   if (verificationStatus === "failed") {
     return <div>Magic link verification failed</div>;
   }
-
   if (verificationStatus === "expired") {
     return <div>Magic link expired</div>;
   }

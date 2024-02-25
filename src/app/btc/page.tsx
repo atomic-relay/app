@@ -1,15 +1,15 @@
 import { BitcoinChartComponent } from "@/components/pages/BitcoinChartComponent";
 import WrapperComponent from "@/components/WrapperComponent";
 import mempoolJS from "@mempool/mempool.js";
-import cheerio from "cheerio";
+// import cheerio from "cheerio";
 
 async function getData() {
-  const [fees, lightning, mempool, mining, twitter] = await Promise.all([
+  const [fees, lightning, mempool, mining] = await Promise.all([
     fetch("https://bitcoiner.live/api/fees/estimates/latest"),
     fetch("https://mempool.space/api/v1/lightning/statistics/latest"),
     fetch("https://bitcoiner.live/api/mempool/latest"),
     fetch("https://mempool.space/api/v1/mining/pools/1w"),
-    fetch("https://mobile.twitter.com/CoreFeeHelper"),
+    // fetch("https://mobile.twitter.com/CoreFeeHelper"),
   ]);
 
   const price = await fetch(
@@ -33,24 +33,16 @@ async function getData() {
   const priceData = await price.json();
   const feesData = await fees.json();
   const lightningData = await lightning.json();
-
-  const twitterFeesData = await twitter.text();
-  const $ = cheerio.load(twitterFeesData);
-  const searchContext = `article[data-testid=tweet]`;
-  const tweetFees = "";
+  // const twitterFeesData = await twitter.text();
+  // const $ = cheerio.load(twitterFeesData);
+  // const searchContext = `article[data-testid=tweet]`;
+  // const tweetFees = "";
   // @ts-ignore
   // const tweetFees = $(searchContext)
   //   .text()
   //   .match(/sats/)
   //   ?.join('');
 
-  console.log("TWEET-----");
-  console.log(tweetFees);
-  // console.log(priceData);
-  // console.log(feesData);
-  // console.log(mempoolData);
-  // console.log(miningData);
-  console.log("Lightning-----");
   console.log(lightningData);
 
   return {
@@ -61,7 +53,7 @@ async function getData() {
     mempool: mempoolData,
     lightning: lightningData.latest,
     mining: miningData,
-    tweet: tweetFees,
+    // tweet: tweetFees,
   };
 }
 
@@ -71,7 +63,7 @@ export default async function Confirmation() {
   return (
     <WrapperComponent>
       <BitcoinChartComponent
-        tweet={data.tweet}
+        // tweet={data.tweet}
         mining={data.mining}
         lightning={data.lightning}
         blockHeight={data.blockHeight}
