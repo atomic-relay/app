@@ -3,7 +3,6 @@ import { Card } from "@tremor/react";
 import WrapperComponent from "@/components/WrapperComponent";
 
 export default function Confirmation({
-  params,
   searchParams,
 }: {
   params: { slug: string };

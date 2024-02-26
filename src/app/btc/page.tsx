@@ -1,7 +1,6 @@
 import { BitcoinChartComponent } from "@/components/pages/BitcoinChartComponent";
 import WrapperComponent from "@/components/WrapperComponent";
 import mempoolJS from "@mempool/mempool.js";
-// import cheerio from "cheerio";
 
 async function getData() {
   const [fees, lightning, mempool, mining] = await Promise.all([
@@ -63,7 +62,6 @@ export default async function Confirmation() {
   return (
     <WrapperComponent>
       <BitcoinChartComponent
-        // tweet={data.tweet}
         mining={data.mining}
         lightning={data.lightning}
         blockHeight={data.blockHeight}
