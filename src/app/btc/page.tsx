@@ -8,7 +8,6 @@ async function getData() {
     fetch("https://mempool.space/api/v1/lightning/statistics/latest"),
     fetch("https://bitcoiner.live/api/mempool/latest"),
     fetch("https://mempool.space/api/v1/mining/pools/1w"),
-    // fetch("https://mobile.twitter.com/CoreFeeHelper"),
   ]);
 
   const price = await fetch(
@@ -32,18 +31,6 @@ async function getData() {
   const priceData = await price.json();
   const feesData = await fees.json();
   const lightningData = await lightning.json();
-  // const twitterFeesData = await twitter.text();
-  // const $ = cheerio.load(twitterFeesData);
-  // const searchContext = `article[data-testid=tweet]`;
-  // const tweetFees = "";
-  // @ts-ignore
-  // const tweetFees = $(searchContext)
-  //   .text()
-  //   .match(/sats/)
-  //   ?.join('');
-
-  console.log(lightningData);
-
   return {
     difficulty: difficultyAdjustment,
     price: priceData,
@@ -52,7 +39,6 @@ async function getData() {
     mempool: mempoolData,
     lightning: lightningData.latest,
     mining: miningData,
-    // tweet: tweetFees,
   };
 }
 
