@@ -23,7 +23,7 @@ export default function SignUp() {
     if (signUp) {
       await signUp.create({ emailAddress });
       const su = await startMagicLinkFlow({
-        redirectUrl: "http://localhost:3000/verification",
+        redirectUrl: "https://app.atomicrelay.co/verification",
       });
       const verification = su.verifications.emailAddress;
       if (verification.verifiedFromTheSameClient()) {
