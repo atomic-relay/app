@@ -54,20 +54,19 @@ export function InvoiceComponent(props: ClientProps): ReactElement {
   const [email, setEmail] = useState<string>("");
   const btcDollarRate = 0.000024;
   const fixedFee = 0.01;
-  //
   // const { trigger, data } = useSWRMutation(
   //   "https://api.livecoinwatch.com/coins/list",
   //   sendCurrRequest,
   // );
 
-  const [fetchData, { data, loading, error }] = useApiRequest<[]>(
-    `/api/hello`,
-    `GET`,
-  );
-
-  useEffect(() => {
-    void fetchData();
-  }, []);
+  // const [fetchData, { data, loading, error }] = useApiRequest<[]>(
+  //   `/api/hello`,
+  // `GET`,
+  // );
+  //
+  // useEffect(() => {
+  //   void fetchData();
+  // }, []);
 
   useEffect(() => {
     const channel = supabase
