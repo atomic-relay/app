@@ -1,6 +1,7 @@
 import { Card } from "@tremor/react";
 import WrapperComponent from "@/components/WrapperComponent";
 import LoginComponent from "@/components/pages/LoginComponent";
+
 function Login() {
   return (
     <WrapperComponent>

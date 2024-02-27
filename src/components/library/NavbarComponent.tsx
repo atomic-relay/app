@@ -15,8 +15,6 @@ export default function NavbarComponent() {
   const pathname = usePathname();
   const navigation = [
     { name: "Home", href: "/", current: pathname === "/" },
-    // { name: "Payments", href: "payments", current: pathname === "/payments" },
-    // { name: "Contacts", href: "contacts", current: pathname === "/contacts" },
     { name: "Bitcoin", href: "btc", current: pathname === "/btc" },
     { name: "Wallet", href: "wallet", current: pathname === "/wallet" },
     // TODO dashboard should be protected
