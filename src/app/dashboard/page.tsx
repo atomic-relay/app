@@ -4,6 +4,8 @@ import {
   SignedOut,
   SignInButton,
   UserButton,
+  SignUpButton,
+  SignOutButton,
 } from "@clerk/nextjs";
 import UserDetails from "./components/UserDetails";
 import SessionDetails from "./components/SessionDetails";
@@ -14,9 +16,9 @@ import LoginComponent from "@/components/pages/LoginComponent";
 const Dashboard = async () => {
   const user = await currentUser();
 
-  if (!user) {
-    redirect("/login");
-  }
+  // if (!user) {
+  //   redirect("/login");
+  // }
 
   return (
     <div className="px-8 py-12 sm:py-16 md:px-20">
@@ -31,6 +33,7 @@ const Dashboard = async () => {
               <UserDetails />
               <SessionDetails />
               <OrgDetails />
+              <SignOutButton />
             </div>
           </>
         )}
@@ -38,6 +41,8 @@ const Dashboard = async () => {
       </SignedIn>
       <SignedOut>
         <h1>Signed Out</h1>
+        <p>Please sign in to continue</p>
+        <SignUpButton />
         <LoginComponent />
         <SignInButton />
       </SignedOut>
