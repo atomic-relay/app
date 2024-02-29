@@ -15,6 +15,20 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.0.15",
+    "@radix-ui/react-avatar": "^1.0.4",
+    "@radix-ui/react-checkbox": "^1.0.4",
+    "@radix-ui/react-collapsible": "^1.0.3",
+    "@radix-ui/react-navigation-menu": "^1.1.4",
+    "@radix-ui/react-popover": "^1.0.7",
+    "@radix-ui/react-select": "^2.0.0",
+    "@radix-ui/react-slider": "^1.1.2",
+    "@radix-ui/react-switch": "^1.0.3",
+    "@radix-ui/react-tabs": "^1.0.4",
+    "@tanstack/react-table": "^8.12.0",
+    "clsx": "^2.1.0",
+    "react-day-picker": "^8.10.0",
+    "tailwind-merge": "^2.2.1",
     "@clerk/nextjs": "^4.29.5",
     "@headlessui/react": "^1.7.18",
     "@headlessui/tailwindcss": "^0.2.0",
@@ -54,6 +68,7 @@
     "react-toastify": "^10.0.4",
     "sjcl": "^1.0.8",
     "swr": "^2.2.4",
+    "tailwindcss-animate": "^1.0.7",
     "tigerbeetle-node": "^0.14.177",
     "ts-money": "^0.4.8",
     "uuid": "^9.0.1"
@@ -80,7 +95,7 @@
     "prettier": "3.2.4",
     "sst": "^2.39.7",
     "supabase": "^1.131.5",
-    "tailwindcss": "^3.4.1",
+    "tailwindcss": "^3.3.0",
     "typescript": "^5"
   }
 }
