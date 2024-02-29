@@ -144,6 +144,10 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
       fontSize: {
+        // "tremor-label": ["0.75rem"],
+        // "tremor-default": ["0.875rem", { lineHeight: "1.25rem" }],
+        // "tremor-title": ["1.125rem", { lineHeight: "1.75rem" }],
+        // "tremor-metric": ["1.875rem", { lineHeight: "2.25rem" }],
         "tremor-label": [
           "0.75rem",
           {
@@ -177,6 +181,9 @@ const config: Config = {
         "radius-md": "var(--radius-md)",
         "radius-lg": "var(--radius-lg)",
         "radius-full": "var(--radius-full)",
+        "tremor-small": "0.375rem",
+        "tremor-default": "0.5rem",
+        "tremor-full": "9999px",
       },
       boxShadow: {
         shadow:
@@ -194,18 +201,6 @@ const config: Config = {
         "dark-tremor-dropdown":
           "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
       },
-      borderRadius: {
-        "tremor-small": "0.375rem",
-        "tremor-default": "0.5rem",
-        "tremor-full": "9999px",
-      },
-      fontSize: {
-        // "tremor-label": ["0.75rem"],
-        "tremor-default": ["0.875rem", { lineHeight: "1.25rem" }],
-        "tremor-title": ["1.125rem", { lineHeight: "1.75rem" }],
-        "tremor-metric": ["1.875rem", { lineHeight: "2.25rem" }],
-      },
-      backgroundImage: {},
     },
     safelist: [
       {
