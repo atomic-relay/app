@@ -48,7 +48,6 @@ const Dashboard = async () => {
           src="https://giphy.com/embed/3ohs7HdhQA4ffttvrO"
           width="480"
           height="480"
-          allowFullScreen
         ></iframe>
         <p></p>
       </SignedOut>

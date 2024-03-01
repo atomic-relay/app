@@ -144,10 +144,6 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
       fontSize: {
-        // "tremor-label": ["0.75rem"],
-        // "tremor-default": ["0.875rem", { lineHeight: "1.25rem" }],
-        // "tremor-title": ["1.125rem", { lineHeight: "1.75rem" }],
-        // "tremor-metric": ["1.875rem", { lineHeight: "2.25rem" }],
         "tremor-label": [
           "0.75rem",
           {
