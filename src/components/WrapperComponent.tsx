@@ -6,7 +6,11 @@ export default function Page({ children }: any) {
   return (
     <div>
       <NavbarComponent />
-      <div className="min-h-screen">{children}</div>
+      <div className="min-h-screen">
+        <main className="flex min-h-screen flex-col items-center justify-self-start p-24">
+          {children}
+        </main>
+      </div>
       <FooterComponent />
     </div>
   );
