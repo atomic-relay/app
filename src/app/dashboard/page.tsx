@@ -4,6 +4,7 @@ import {
   SignedOut,
   UserButton,
   SignOutButton,
+  SignInButton,
 } from "@clerk/nextjs";
 import UserDetails from "./components/UserDetails";
 import SessionDetails from "./components/SessionDetails";
@@ -14,14 +15,15 @@ import { Button } from "@tremor/react";
 const Dashboard = async () => {
   const user = await currentUser();
 
-  // if (!user) {
-  //   redirect("/login");
-  // }
+  if (!user) {
+    // redirect("/login");
+  }
 
   return (
     <div className="px-8 py-12 sm:py-16 md:px-20">
       <SignedIn>
         <h1>Signed In</h1>
+        <UserButton afterSignOutUrl="/login" />
         {user && (
           <>
             <h1 className="text-3xl font-semibold text-black">
@@ -40,16 +42,7 @@ const Dashboard = async () => {
       </SignedIn>
       <SignedOut>
         <h1>Signed Out</h1>
-        <p>Please sign in to continue</p>
-        <Button>
-          <Link href="/login">Sign in</Link>
-        </Button>
-        <iframe
-          src="https://giphy.com/embed/3ohs7HdhQA4ffttvrO"
-          width="480"
-          height="480"
-        ></iframe>
-        <p></p>
+        <SignInButton />
       </SignedOut>
     </div>
   );
