@@ -10,8 +10,6 @@ import UserDetails from "./components/UserDetails";
 import SessionDetails from "./components/SessionDetails";
 import OrgDetails from "./components/OrgDetails";
 import { redirect } from "next/navigation";
-import Link from "next/link";
-import { Button } from "@tremor/react";
 const Dashboard = async () => {
   const user = await currentUser();
 
