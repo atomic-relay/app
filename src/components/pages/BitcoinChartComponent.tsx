@@ -126,8 +126,7 @@ export function BitcoinChartComponent(
   ).toFixed(2);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-self-start p-24">
-      <Title>Bitcoin Live Data</Title>
+    <main className="flex min-h-screen flex-col items-center justify-self-start px-24">
       <main className="flex flex-row my-2 items-center justify-self-start py-4 lg:rt-r-w-80% md:rt-r-w-100%">
         <Card className="mx-1 h-40 w-80 py-4">
           <Title>Hashrate</Title>
@@ -182,12 +181,16 @@ export function BitcoinChartComponent(
             }}
           />
         </Text>
-        <Button onClick={(e) => handleClick(e.target)}>Enter</Button>
-        {amount && <Text>BTC - {amount}</Text>}
-        {dollarAmount && <Text>USD - ${dollarAmount}</Text>}
-        <a href={`https://mempool.space/api/address/${address}`}>
-          <Text>Address</Text>
-        </a>
+        <Button className="mt-4 mb-2" onClick={(e) => handleClick(e.target)}>
+          Enter
+        </Button>
+        <div>
+          {amount && <Text>BTC - {amount}</Text>}
+          {dollarAmount && <Text>USD - ${dollarAmount}</Text>}
+          <a href={`https://mempool.space/api/address/${address}`}>
+            <Text>Address</Text>
+          </a>
+        </div>
       </Card>
       <Card>
         <Title>BTC Price</Title>

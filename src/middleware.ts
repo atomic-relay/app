@@ -21,12 +21,15 @@ export default authMiddleware({
   },
   publicRoutes: [
     "/",
+    "/invoice",
+    "/login",
     "/confirmation",
     "/payments",
     "/contacts",
-    "/dashboard",
+    "/btc",
     "/signup",
     "/verification",
+    "/wallet",
   ],
   apiRoutes: ["/api/(.*)", "/trpc/(.*)"],
 });

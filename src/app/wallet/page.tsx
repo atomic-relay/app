@@ -118,7 +118,7 @@ const WalletPage: NextPage = () => {
   return (
     <WrapperComponent id="Home" className="flex flex-col">
       <div id="Home" className="flex flex-col">
-        <main className="min-h-screen pt-24 pb-16 flex flex-col justify-center items-left self-center max-w-[854px] w-4/5">
+        <main className="min-h-screen flex flex-col items-left self-center max-w-[854px] w-4/5">
           <DevOverlay />
           <Configure isOpen={showConfigure} close={onCloseConfigure} />
           <div id="setup-replit" className="mt-12">

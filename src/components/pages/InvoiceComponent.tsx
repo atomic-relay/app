@@ -100,7 +100,7 @@ export function InvoiceComponent(props: ClientProps): ReactElement {
   const usFormat = new Intl.NumberFormat("en-US");
 
   return (
-    <Card className="max-w-sm my-4 mx-auto">
+    <Card className="max-w-sm my-4 mx-auto mt-12">
       <Flex className="mt-2">
         <Text className="text-base">USD (USDT/USDC)</Text>
         <Metric className="text-base">${usFormat.format(stables)}</Metric>
