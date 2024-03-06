@@ -121,26 +121,24 @@ export default function NavbarComponent() {
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
                 <Menu as="div" className="relative ml-3">
-                  <div>
-                    <div className="flex flex-row gap-5">
-                      <Avatar
-                        title={"Johnny Wu"}
-                        src={
-                          "https://avatars.githubusercontent.com/u/5092624?v=4"
-                        }
-                        topStatus="online"
-                        size="sm"
-                      />
-                    </div>
-                    <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                      <SignedIn>
-                        <UserButton afterSignOutUrl="/login" />
-                      </SignedIn>
-                      <SignedOut>
-                        <SignInButton />
-                      </SignedOut>
-                    </Menu.Button>
-                  </div>
+                  <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <SignedIn>
+                      <UserButton afterSignOutUrl="/" />
+                      <div className="flex flex-row gap-5">
+                        <Avatar
+                          title={"Johnny Wu"}
+                          src={
+                            "https://avatars.githubusercontent.com/u/5092624?v=4"
+                          }
+                          topStatus="online"
+                          size="sm"
+                        />
+                      </div>
+                    </SignedIn>
+                    <SignedOut>
+                      <SignInButton />
+                    </SignedOut>
+                  </Menu.Button>
                   <Transition
                     as={Fragment}
                     enter="transition ease-out duration-100"
