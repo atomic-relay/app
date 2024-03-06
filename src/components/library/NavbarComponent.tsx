@@ -6,7 +6,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-
+import Avatar from "../ion/Avatar";
 // @ts-ignore
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -122,6 +122,16 @@ export default function NavbarComponent() {
                 </button>
                 <Menu as="div" className="relative ml-3">
                   <div>
+                    <div className="flex flex-row gap-5">
+                      <Avatar
+                        title={"Johnny Wu"}
+                        src={
+                          "https://avatars.githubusercontent.com/u/5092624?v=4"
+                        }
+                        topStatus="online"
+                        size="sm"
+                      />
+                    </div>
                     <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <SignedIn>
                         <UserButton afterSignOutUrl="/login" />
