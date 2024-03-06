@@ -175,6 +175,7 @@ export function BitcoinChartComponent(
         <Title>Balance Lookup</Title>
         <Text>We do not store any data.</Text>
         <Text>
+          <Text>MicroStrategy Address is the example address prefilled.</Text>
           <TextInput
             placeholder="Enter Address"
             value={address}
