@@ -77,7 +77,9 @@ export function BitcoinChartComponent(
   const PRICE = parseInt(price);
   const satRatio = PRICE / SATS_TO_BITCOIN;
 
-  const [address, setAddress] = useState<string>("");
+  const [address, setAddress] = useState<string>(
+    "1FzWLkAahHooV3kzYgyx6qsswXJ6sCXkSR",
+  );
   const [amount, setAmount] = useState<number>(0);
   const [dollarAmount, setDollarAmount] = useState<number>();
   useEffect(() => {
@@ -185,8 +187,10 @@ export function BitcoinChartComponent(
           Enter
         </Button>
         <div>
-          {amount && <Text>BTC - {amount}</Text>}
-          {dollarAmount && <Text>USD - ${dollarAmount}</Text>}
+          {amount && amount > 0 && <Text>BTC - {amount}</Text>}
+          {dollarAmount && dollarAmount > 0 && (
+            <Text>USD - ${dollarAmount}</Text>
+          )}
           <a href={`https://mempool.space/api/address/${address}`}>
             <Text>Address</Text>
           </a>
