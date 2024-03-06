@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSignUp } from "@clerk/nextjs";
 
-export default function SignUp() {
+function Signup() {
   const [emailAddress, setEmailAddress] = useState("");
   const [expired, setExpired] = useState(false);
   const [verified, setVerified] = useState(false);
@@ -58,3 +58,5 @@ export default function SignUp() {
     </form>
   );
 }
+
+export default Signup;

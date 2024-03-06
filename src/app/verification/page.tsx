@@ -3,7 +3,7 @@
 import { MagicLinkErrorCode, useClerk, isEmailLinkError } from "@clerk/nextjs";
 import React, { useEffect, useState } from "react";
 
-export default function Verification() {
+function Verification() {
   const [verificationStatus, setVerificationStatus] = useState("loading");
 
   const { handleEmailLinkVerification } = useClerk();
@@ -44,3 +44,5 @@ export default function Verification() {
     <div>Successfully signed up. Return to the original tab to continue.</div>
   );
 }
+
+export default Verification;

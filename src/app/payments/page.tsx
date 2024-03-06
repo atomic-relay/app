@@ -47,7 +47,7 @@ const payments = [
     amount: "$1000",
   },
 ];
-export default function Home() {
+function Payments() {
   return (
     <WrapperComponent>
       <Card className="max-w-xl my-10 mx-auto">
@@ -63,3 +63,5 @@ export default function Home() {
     </WrapperComponent>
   );
 }
+
+export default Payments;

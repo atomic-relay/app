@@ -57,7 +57,7 @@ const people = [
   },
 ];
 
-export default function Contacts() {
+function Contacts() {
   return (
     <WrapperComponent>
       <Card className="max-w-xl my-10 mx-auto">
@@ -71,3 +71,5 @@ export default function Contacts() {
     </WrapperComponent>
   );
 }
+
+export default Contacts;

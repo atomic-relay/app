@@ -2,7 +2,7 @@ import { ConfirmationComponent } from "@/components/pages/ConfirmationComponent"
 import { Card } from "@tremor/react";
 import WrapperComponent from "@/components/WrapperComponent";
 
-export default function Confirmation({
+function Confirmation({
   searchParams,
 }: {
   params: { slug: string };
@@ -16,3 +16,5 @@ export default function Confirmation({
     </WrapperComponent>
   );
 }
+
+export default Confirmation;
