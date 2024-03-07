@@ -31,6 +31,7 @@ export default function NavbarComponent() {
   const DataDropwdown = (
     <Menu as="div" className="relative inline-block text-left">
       <div>
+        <a href="/api/auth/login">Login</a>
         <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
           Price Action
           <ChevronDownIcon
@@ -123,7 +124,6 @@ export default function NavbarComponent() {
                 <Menu as="div" className="relative ml-3">
                   <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                     <SignedIn>
-                      <UserButton afterSignOutUrl="/" />
                       <div className="flex flex-row gap-5">
                         <Avatar
                           title={"Johnny Wu"}
@@ -133,6 +133,7 @@ export default function NavbarComponent() {
                           topStatus="online"
                           size="sm"
                         />
+                        <UserButton afterSignOutUrl="/" />
                       </div>
                     </SignedIn>
                     <SignedOut>
