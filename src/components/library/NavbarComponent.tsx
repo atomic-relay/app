@@ -87,6 +87,29 @@ export default function NavbarComponent() {
     </div>
   );
 
+  const NavItems = () => (
+    <div className="hidden sm:ml-6 sm:block">
+      <div className="flex space-x-4">
+        {navigation.map((item) => (
+          <a
+            key={item.name}
+            href={item.href}
+            className={classNames(
+              item.current
+                ? "bg-gray-900 text-white"
+                : "text-gray-300 hover:bg-gray-700 hover:text-white",
+              "rounded-md px-3 py-2 text-sm font-medium",
+            )}
+            aria-current={item.current ? "page" : undefined}
+          >
+            {item.name}
+          </a>
+        ))}
+        {DataDropwdown}
+      </div>
+    </div>
+  );
+
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open = true }) => (
@@ -98,26 +121,7 @@ export default function NavbarComponent() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <Logo />
-                <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex space-x-4">
-                    {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                          "rounded-md px-3 py-2 text-sm font-medium",
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        {item.name}
-                      </a>
-                    ))}
-                    {DataDropwdown}
-                  </div>
-                </div>
+                <NavItems />
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button
