@@ -54,14 +54,11 @@ export default function NavbarComponent() {
             <Menu.Item>
               {({ active }) => (
                 <button
-                  className={classNames(
-                    active ? "bg-gray-100" : "",
-                    "block px-4 py-2 text-sm text-gray-700",
-                  )}
                   className={
                     active
-                      ? `px-1 py-1 bg-gray-100 group flex w-full items-center rounded-md px-2 py-2 text-sm`
-                      : `px-1 py-1 text-gray-900 group flex w-full items-center rounded-md px-2 py-2 text-sm`
+                      ? `bg-gray-100 px-1 py-1`
+                      : `text-gray-900 px-2 py-2` +
+                        ` group flex w-full items-center rounded-md atext-sm`
                   }
                 >
                   {item}
