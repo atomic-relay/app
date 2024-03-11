@@ -28,7 +28,7 @@ export default function NavbarComponent() {
 
   const PriceAction = ["BTC", "USD", "USDT"];
 
-  const DataDropwdown = (
+  const DataDropdown = (
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
@@ -112,7 +112,7 @@ export default function NavbarComponent() {
             {item.name}
           </a>
         ))}
-        {DataDropwdown}
+        {DataDropdown}
       </div>
     </div>
   );
@@ -148,34 +148,44 @@ export default function NavbarComponent() {
   );
 
   const SettingsDropdown = () => (
-    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-      <Menu.Item>
-        {({ active }) => (
-          <a
-            href="#"
-            className={classNames(
-              active ? "bg-gray-100" : "",
-              "block px-4 py-2 text-sm text-gray-700",
-            )}
-          >
-            Your Profile
-          </a>
-        )}
-      </Menu.Item>
-      <Menu.Item>
-        {({ active }) => (
-          <a
-            href="#"
-            className={classNames(
-              active ? "bg-gray-100" : "",
-              "block px-4 py-2 text-sm text-gray-700",
-            )}
-          >
-            Settings
-          </a>
-        )}
-      </Menu.Item>
-    </Menu.Items>
+    <Transition
+      as={Fragment}
+      enter="transition ease-out duration-100"
+      enterFrom="transform opacity-0 scale-95"
+      enterTo="transform opacity-100 scale-100"
+      leave="transition ease-in duration-75"
+      leaveFrom="transform opacity-100 scale-100"
+      leaveTo="transform opacity-0 scale-95"
+    >
+      <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Item>
+          {({ active }) => (
+            <a
+              href="#"
+              className={classNames(
+                active ? "bg-gray-100" : "",
+                "block px-4 py-2 text-sm text-gray-700",
+              )}
+            >
+              Your Profile
+            </a>
+          )}
+        </Menu.Item>
+        <Menu.Item>
+          {({ active }) => (
+            <a
+              href="#"
+              className={classNames(
+                active ? "bg-gray-100" : "",
+                "block px-4 py-2 text-sm text-gray-700",
+              )}
+            >
+              Settings
+            </a>
+          )}
+        </Menu.Item>
+      </Menu.Items>
+    </Transition>
   );
 
   return (
@@ -195,17 +205,7 @@ export default function NavbarComponent() {
                 <Notification />
                 <Menu as="div" className="relative ml-3">
                   <LoggedInState />
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <SettingsDropdown />
-                  </Transition>
+                  <SettingsDropdown />
                 </Menu>
               </div>
             </div>
@@ -228,7 +228,7 @@ export default function NavbarComponent() {
                   {item.name}
                 </Disclosure.Button>
               ))}
-              {DataDropwdown}
+              {DataDropdown}
             </div>
           </Disclosure.Panel>
         </>
