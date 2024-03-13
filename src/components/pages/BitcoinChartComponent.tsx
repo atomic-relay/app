@@ -130,7 +130,7 @@ export function BitcoinChartComponent(
           <Text>Nodes: {lightning["node_count"]}</Text>
           <Text>Channels: {lightning["channel_count"]}</Text>
           <Text>Capacity: {lightning["total_capacity"]}</Text>
-          <Text>Average Fees (sats/byte): {lightning["avg_fee_rate"]}</Text>
+          {/*<Text>Average Fees (sats/byte): {lightning["avg_fee_rate"]}</Text>*/}
         </Card>
         <Card className="mx-1 h-40 w-80 py-4">
           <Title>Mining Data</Title>

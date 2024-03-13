@@ -48,6 +48,7 @@ const payments = [
   },
 ];
 function Payments() {
+  // TODO get payments from the server
   return (
     <WrapperComponent>
       <Card className="max-w-xl my-10 mx-auto">

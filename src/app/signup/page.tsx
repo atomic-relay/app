@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSignUp } from "@clerk/nextjs";
+import WrapperComponent from "@/components/WrapperComponent";
 
 function Signup() {
   const [emailAddress, setEmailAddress] = useState("");
@@ -10,9 +11,14 @@ function Signup() {
   const router = useRouter();
   const { signUp, isLoaded, setActive } = useSignUp();
 
-  if (!isLoaded) {
-    return null;
+  if (!signUp) {
+    return (
+      <WrapperComponent>
+        <SignupForm submit={submit} />
+      </WrapperComponent>
+    );
   }
+
   const { startMagicLinkFlow, cancelMagicLinkFlow } =
     signUp.createMagicLinkFlow();
 
@@ -47,6 +53,15 @@ function Signup() {
     return <div>Signed in on other tab</div>;
   }
 
+  return (
+    <WrapperComponent>
+      <SignupForm submit={submit} />
+    </WrapperComponent>
+  );
+}
+
+function SignupForm({ submit }: any) {
+  const [emailAddress, setEmailAddress] = useState("");
   return (
     <form onSubmit={submit}>
       <input

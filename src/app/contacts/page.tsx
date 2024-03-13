@@ -58,6 +58,8 @@ const people = [
 ];
 
 function Contacts() {
+  //  TODO: Add a loading state
+  //
   return (
     <WrapperComponent>
       <Card className="max-w-xl my-10 mx-auto">

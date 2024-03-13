@@ -9,7 +9,6 @@ import {
 import UserDetails from "./components/UserDetails";
 import SessionDetails from "./components/SessionDetails";
 import OrgDetails from "./components/OrgDetails";
-import { redirect } from "next/navigation";
 const Dashboard = async () => {
   const user = await currentUser();
 
