@@ -59,7 +59,7 @@ const Playground = ({ isConfigured = false }: PlaygroundProps) => {
     );
   };
 
-  let walletSection = null;
+  let walletSection;
   if (numWallets === 0) {
     walletSection = <AddFirstWallet />;
   } else {
