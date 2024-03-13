@@ -1,12 +1,5 @@
 "use client";
-import {
-  AreaChart,
-  Card,
-  Title,
-  Text,
-  TextInput,
-  Divider,
-} from "@tremor/react";
+import { AreaChart, Card, Title, Text, TextInput } from "@tremor/react";
 import { ReactElement, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
@@ -43,6 +36,10 @@ const chartData = [
     date: "Feb 2024",
     USD: 50400,
   },
+  {
+    data: "Mar 2024",
+    USD: 65000,
+  },
 ];
 
 const valueFormatter = function (number: number) {
@@ -57,25 +54,17 @@ interface BitcoinChartComponentProps {
   blockHeight: any;
   lightning: any;
   mining: any;
-  // tweet: any;
 }
 export function BitcoinChartComponent(
   props: BitcoinChartComponentProps,
 ): ReactElement {
-  const {
-    price = "50000",
-    fees,
-    mempool,
-    difficulty,
-    mining,
-    blockHeight,
-    lightning,
-  } = props;
+  const { price, fees, mempool, difficulty, mining, blockHeight, lightning } =
+    props;
 
-  const SATS_TO_BITCOIN = 1e8;
+  const SAT_TO_BITCOIN = 1e8;
   const averageBytes = 140;
   const PRICE = parseInt(price);
-  const satRatio = PRICE / SATS_TO_BITCOIN;
+  const satRatio = PRICE / SAT_TO_BITCOIN;
 
   const [address, setAddress] = useState<string>(
     "1FzWLkAahHooV3kzYgyx6qsswXJ6sCXkSR",
@@ -104,7 +93,7 @@ export function BitcoinChartComponent(
   };
 
   const convertSatsToBTC = (sats: number) => {
-    return sats / SATS_TO_BITCOIN;
+    return sats / SAT_TO_BITCOIN;
   };
 
   // @ts-ignore
@@ -141,7 +130,7 @@ export function BitcoinChartComponent(
           <Text>Nodes: {lightning["node_count"]}</Text>
           <Text>Channels: {lightning["channel_count"]}</Text>
           <Text>Capacity: {lightning["total_capacity"]}</Text>
-          <Text>Average Fees (sats): {lightning["avg_fee_rate"]}</Text>
+          <Text>Average Fees (sats/byte): {lightning["avg_fee_rate"]}</Text>
         </Card>
         <Card className="mx-1 h-40 w-80 py-4">
           <Title>Mining Data</Title>

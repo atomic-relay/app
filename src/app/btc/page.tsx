@@ -41,7 +41,6 @@ async function getData() {
     mining: miningData,
   };
 }
-
 export default async function Confirmation() {
   const data = await getData();
 
