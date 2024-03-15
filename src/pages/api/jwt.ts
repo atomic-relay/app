@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
 import type { NextApiRequest, NextApiResponse } from "next";
 import Database from "@replit/database";
-import { BlockchainNetwork } from "@/providers/EnvironmentSettingsProvider";
 
 const db = new Database();
 

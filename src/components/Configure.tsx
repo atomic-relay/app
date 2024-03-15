@@ -227,10 +227,10 @@ const Configure = ({
           </div>
         </DialogTitle>
         <p className="text-sm text-muted-foreground">
-          Weve automatically generated a JWT signing key pair for you. Normally,
-          you would generate these yourself for security reasons, but for this
-          demo use the key pair provided. Copy your JWT public key below, then
-          in{" "}
+          We have automatically generated a JWT signing key pair for you.
+          Normally, you would generate these yourself for security reasons, but
+          for this demo use the key pair provided. Copy your JWT public key
+          below, then in{" "}
           <a
             href="https://app.lightspark.com/account#security:~:text=Update%20wallet%20JWT%20public%20key"
             target="_blank"
