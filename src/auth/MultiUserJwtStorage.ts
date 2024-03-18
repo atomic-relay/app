@@ -9,7 +9,6 @@ class MultiUserJwtStorage implements AccessTokenStorage {
   private userName: string;
   private blockchainNetwork: BlockchainNetwork;
   private deploymentEnvironment: string;
-
   constructor(
     userName: string,
     blockchainNetwork: BlockchainNetwork,

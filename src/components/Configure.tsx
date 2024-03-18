@@ -241,10 +241,8 @@ const Configure = ({
           continue.
         </p>
       </DialogHeader>
-
       {isLoading && <JwtShimmer />}
       {!isLoading && <JwtSection />}
-
       <DialogFooter>
         <StepperButtons onNext={onDone} />
       </DialogFooter>

@@ -13,7 +13,7 @@ function ComponentProperty({
   isSubcomponentProperty = true,
   name = "title",
   subcomponent = "ion/AvatarStatus/",
-  description = "Controls the title of the label",
+  description = "Description of the Component",
   className = "",
 }: ComponentPropertyProps) {
   return (

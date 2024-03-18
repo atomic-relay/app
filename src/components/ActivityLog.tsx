@@ -49,9 +49,6 @@ const EmptyActivityLog = () => {
   return (
     <div className="grid place-content-center h-[150px] text-center">
       <div className="text-lg font-semibold">Nothing to report, captain</div>
-      <p className="text-sm text-muted-foreground">
-        See what’s happening behind the demo.
-      </p>
     </div>
   );
 };
