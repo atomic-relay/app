@@ -2,9 +2,6 @@
 
 import { useEffect, useState } from "react";
 import type { NextPage } from "next";
-import DevOverlay from "@/components/DevOverlay";
-import Configure from "@/components/Configure";
-import Playground from "@/components/Playground";
 import { SharedStateProvider } from "@/providers/SharedStateProvider";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -119,11 +116,9 @@ const WalletPage: NextPage = () => {
     <WrapperComponent id="Home" className="flex flex-col">
       <div id="Home" className="flex flex-col">
         <main className="min-h-screen flex flex-col items-left self-center max-w-[854px] w-4/5">
-          <DevOverlay />
-          <Configure isOpen={showConfigure} close={onCloseConfigure} />
           <div id="setup-replit" className="mt-12">
             <SharedStateProvider>
-              <Playground isConfigured={!!secrets} />
+              <div></div>
             </SharedStateProvider>
           </div>
         </main>

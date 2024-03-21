@@ -4,7 +4,7 @@ async function Page() {
   return (
     <WrapperComponent>
       <Card className="max-w-sm my-4 mx-auto mt-12">
-        <Text>Welcome Home</Text>
+        <Text>Welcome to Atomic Relay</Text>
       </Card>
     </WrapperComponent>
   );
