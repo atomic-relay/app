@@ -106,7 +106,7 @@ const WalletPage: NextPage = () => {
           className="w-fit ml-2"
           onClick={resetSecrets}
         >
-          reset
+          reset secrets
         </Button>
       </>
     );
